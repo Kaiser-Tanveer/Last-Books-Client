@@ -14,7 +14,7 @@ const Categories = () => {
             })
     }, [])
     return (
-        <div>
+        <div className='pt-14'>
             <h2 className='text-5xl font-bold py-10'>Get Books for <span>
                 <Typewriter
                     words={['Primary Secondary and Intermediate']}

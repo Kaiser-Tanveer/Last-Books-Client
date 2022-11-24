@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../../Assets/logo/logo.png';
 
 const Footer = () => {
     return (
         <footer className="footer p-10 bg-base-200 text-base-content">
             <div>
-                <h2 className='text-4xl font-bold'>LastBook</h2>
+                <Link className='btn btn-ghost normal-case text-4xl font-bold'>LastBook</Link>
                 <p>&copy; by Kaiser Tanveer, 2022</p>
             </div>
             <div>
