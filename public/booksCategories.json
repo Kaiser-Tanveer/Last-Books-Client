@@ -1,0 +1,23 @@
+[
+    {
+        "category_id": "01",
+        "category": "Primary",
+        "img": "https://i.ibb.co/f9wM9pQ/primary-Cover.png",
+        "price": "200.00",
+        "description": "Get all books from Class-1 to Class-5. Your All primary level Books are Here.."
+    },
+    {
+        "category_id": "02",
+        "category": "Secondary",
+        "img": "https://i.ibb.co/561KFSt/secondary-Cover.png",
+        "price": "60.00",
+        "description": "Get all books from Class-6 to Class-10. Your All Secondary level Books are Here.."
+    },
+    {
+        "category_id": "03",
+        "category": "Intermediate",
+        "img": "https://i.ibb.co/zZ112Qb/intermediate-Cover.png",
+        "price": "500.00",
+        "description": "Get all books from Class-11 and Class-12. Your All primary level Books are Here.."
+    }
+]
