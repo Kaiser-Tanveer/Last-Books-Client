@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content">
+        <footer className="footer p-10 bg-base-200 text-base-content grid grid-cols-2 items-center justify-center lg:grid-cols-4">
             <div>
                 <Link className='btn btn-ghost normal-case text-4xl font-bold'>LastBook</Link>
                 <p>&copy; by Kaiser Tanveer, 2022</p>
