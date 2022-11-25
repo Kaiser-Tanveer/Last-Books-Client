@@ -8,7 +8,7 @@ const ProductMedia = ({ product }) => {
     return (
         <div>
             <ProductCard
-                books={books}
+                product={product}
             />
             {
                 books &&

@@ -19,16 +19,14 @@ const Register = () => {
             .then(result => {
                 const user = result?.user;
                 console.log(user);
-                navigate('/');
                 toast.success('Registered successfully!');
                 const userInfo = {
                     displayName: data?.name
                 }
 
                 updateUser(userInfo)
-                    .then(result => {
-                        const user = result?.user;
-                        console.log(user);
+                    .then(() => {
+                        saveUser(data.name, data.email);
                     })
                     .catch(err => console.error(err));
             })
@@ -37,6 +35,23 @@ const Register = () => {
                 setFormError(err.message);
             });
     }
+    // // Saving User 
+    const saveUser = (name, email) => {
+        const user = { name, email };
+        console.log(user);
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                navigate('/');
+            })
+    };
 
     return (
         <div className="hero min-h-screen py-24 mx-auto w-full">

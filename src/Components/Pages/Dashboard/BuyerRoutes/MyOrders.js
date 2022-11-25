@@ -26,6 +26,7 @@ const MyOrders = () => {
                         <th>Used Time</th>
                         <th>Price</th>
                         <th>Buy</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@ const MyOrders = () => {
                             <td>{order.usedTime}</td>
                             <td>{order.oldPrice}</td>
                             <td><Link className='btn btn-sm btn-success' to=''>Pay</Link></td>
+                            <td><button className='btn btn-sm btn-error'>X</button></td>
                         </tr>
                         )
                     }
