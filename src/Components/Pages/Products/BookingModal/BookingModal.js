@@ -4,7 +4,7 @@ import { useNavigation } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 import Spinner from '../../Spinner/Spinner';
 
-const BookingModal = ({ product, setBook }) => {
+const BookingModal = ({ books: product, setBook }) => {
     const { user } = useContext(AuthContext);
     const { book, title, newPrice, oldPrice, used } = product;
     // console.log(title);
@@ -68,7 +68,14 @@ const BookingModal = ({ product, setBook }) => {
                         </div>
                         <input name='phone' type="number" placeholder="Your Phone" className="input input-bordered w-full my-3" required />
                         <textarea name='location' className="textarea textarea-bordered w-full my-3" placeholder="You Location" required></textarea>
-                        <input type="submit" value='Submit' className="btn btn-accent w-full" />
+                        {
+                            !user && <p>Please login to create a Booking</p>
+                        }
+                        <input type="submit" value='Submit' className={user ?
+                            "btn btn-accent w-full"
+                            :
+                            "btn btn-accent w-full btn-disabled"
+                        } />
                     </form>
                 </div>
             </div>

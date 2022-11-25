@@ -3,16 +3,17 @@ import BookingModal from '../BookingModal/BookingModal';
 import ProductCard from '../ProductCard';
 
 const ProductMedia = ({ product }) => {
-    const [book, setBook] = useState(product);
+    const [books, setBook] = useState(product);
+    console.log(books);
     return (
         <div>
             <ProductCard
-                product={product}
+                books={books}
             />
             {
-                book &&
+                books &&
                 <BookingModal
-                    product={product}
+                    books={books}
                     setBook={setBook}
                 />
             }

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
+import { FaBars } from 'react-icons/fa'
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -13,9 +14,13 @@ const Navbar = () => {
             .catch(err => console.error(err));
     };
 
-    // MenuItems vaiable 
+    // MenuItems variable 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
+        {
+            user &&
+            <li><Link to='/dashboard'>Dashboard</Link></li>
+        },
     </>
     return (
         <div className="navbar bg-base-100">
@@ -38,10 +43,13 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <button onClick={logOutHandler} className='btn'>LogOut</button>
+                        <button onClick={logOutHandler} className='btn mr-auto lg:mr-0'>LogOut</button>
                         :
-                        <Link className="btn" to='/register'>Register</Link>
+                        <Link className="btn mr-auto lg:mr-0" to='/register'>Register</Link>
                 }
+                <label htmlFor="dashboard-drawer" className='btn-ghost p-5 lg:hidden'>
+                    <FaBars />
+                </label>
             </div>
         </div>
     );

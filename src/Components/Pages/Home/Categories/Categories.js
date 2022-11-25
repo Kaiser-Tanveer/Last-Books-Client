@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import CategoryCard from './CategoryCard';
 
 const Categories = () => {
-    const [categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/categories')
-            .then(res => res.json())
-            .then(data => {
-                setCategories(data);
-            })
-    }, [])
+    // Loading data using useQuery
+    const { data: categories = [] } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = fetch('http://localhost:5000/categories');
+            const data = (await res).json();
+            return data;
+        }
+    })
     return (
         <div className='pt-14'>
             <h2 className='text-5xl font-bold py-10'>Get Books for <span className='text-orange-600'>
