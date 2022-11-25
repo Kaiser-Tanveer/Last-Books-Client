@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [formError, setFormError] = useState('');
-    const { createUser, GoogleLogIn } = useContext(AuthContext);
+    const { createUser, GoogleLogIn, updateUser } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm('');
     const navigate = useNavigate();
 
@@ -21,16 +21,16 @@ const Register = () => {
                 console.log(user);
                 navigate('/');
                 toast.success('User created successfully!');
-                // const userInfo = {
-                //     displayName: data?.name
-                // }
+                const userInfo = {
+                    displayName: data?.name
+                }
                 // saveUser(data?.name, data?.email);
-                // updateUser(userInfo)
-                //     .then(result => {
-                //         const user = result?.user;
-                //         console.log(user);
-                //     })
-                //     .catch(err => console.error(err));
+                updateUser(userInfo)
+                    .then(result => {
+                        const user = result?.user;
+                        console.log(user);
+                    })
+                    .catch(err => console.error(err));
             })
             .catch(err => {
                 console.error(err);
