@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigation } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
+import Spinner from '../../Spinner/Spinner';
 
-const BookingModal = ({ product }) => {
+const BookingModal = ({ product, setBook }) => {
     const { user } = useContext(AuthContext);
     const { book, title, newPrice, oldPrice, used } = product;
-    console.log(title);
+    // console.log(title);
+    const navigation = useNavigation();
     const bookingHandler = e => {
         e.preventDefault();
         const form = e.target;
@@ -26,26 +30,27 @@ const BookingModal = ({ product }) => {
         console.log(booking);
 
         // Sending Booking data to backend
-        // fetch('http://localhost:5000/bookings', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(booking)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         if (data.acknowledged) {
-        //             setTreatment(null);
-        //             toast.success('Booking Confirmed');
-        //             refetch()
-        //         }
-        //         else {
-        //             toast.error(data.message);
-        //         }
-        //     })
-
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Booking Confirmed');
+                    if (navigation.state === "loading") {
+                        return <Spinner />
+                    }
+                }
+                else {
+                    toast.error(data.message);
+                }
+            })
+        setBook(null);
     }
     return (
         <div>

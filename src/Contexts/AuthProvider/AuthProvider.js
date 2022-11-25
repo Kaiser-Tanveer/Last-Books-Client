@@ -26,11 +26,13 @@ const AuthProvider = ({ children }) => {
 
     // Google Sign in 
     const GoogleLogIn = () => {
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
 
     // //Log out
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
@@ -39,6 +41,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             console.log(currentUser);
             setUser(currentUser);
+            setLoading(false);
         })
         return () => {
             return unsubscribe;
@@ -47,6 +50,7 @@ const AuthProvider = ({ children }) => {
 
     // Update User 
     const updateUser = (userInfo) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, userInfo)
     }
 

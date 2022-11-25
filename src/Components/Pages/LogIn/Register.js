@@ -20,11 +20,11 @@ const Register = () => {
                 const user = result?.user;
                 console.log(user);
                 navigate('/');
-                toast.success('User created successfully!');
+                toast.success('Registered successfully!');
                 const userInfo = {
                     displayName: data?.name
                 }
-                // saveUser(data?.name, data?.email);
+
                 updateUser(userInfo)
                     .then(result => {
                         const user = result?.user;
@@ -49,7 +49,15 @@ const Register = () => {
                 <div className="card w-full shadow-2xl">
                     <div className="card-body">
                         <form onSubmit={handleSubmit(submitHandler)}>
-                            <h2 className='text-4xl font-semibold text-center'>Register</h2>
+                            <div>
+                                <label className="label">
+                                    <span className="label-text">Select what you're Registering for:</span>
+                                </label>
+                                <select {...register("role", { required: 'role is required' })} placeholder="Register as Seller/Buyer" className="select select-bordered w-full">
+                                    <option value="seller">Seller</option>
+                                    <option value="buyer">Buyer</option>
+                                </select>
+                            </div>
                             <div className="form-control w-full">
                                 <label className="label">
                                     <span className="label-text">Name</span>
@@ -83,7 +91,7 @@ const Register = () => {
                                 .then(result => {
                                     const user = result.user;
                                     console.log(user);
-                                    // navigate(from, { replace: true });
+                                    navigate('/')
                                     toast.success('Signed in Successfully!')
                                 })
                                 .then(err => console.error(err))
