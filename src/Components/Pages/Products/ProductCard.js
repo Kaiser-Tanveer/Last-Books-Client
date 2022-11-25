@@ -1,5 +1,4 @@
 import React from 'react';
-import BookingModal from './BookingModal/BookingModal';
 
 const ProductCard = ({ product }) => {
     const { book, title, img, newPrice, oldPrice, used, details } = product;
@@ -22,9 +21,6 @@ const ProductCard = ({ product }) => {
                     <label htmlFor="booking-modal" className="btn btn-success mt-10">PURCHASE</label>
                 </div>
             </div>
-            <BookingModal
-                product={product}
-            />
         </div>
     );
 };

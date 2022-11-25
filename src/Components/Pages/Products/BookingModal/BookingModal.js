@@ -4,6 +4,7 @@ import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 const BookingModal = ({ product }) => {
     const { user } = useContext(AuthContext);
     const { book, title, newPrice, oldPrice, used } = product;
+    console.log(title);
     const bookingHandler = e => {
         e.preventDefault();
         const form = e.target;
