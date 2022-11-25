@@ -39,7 +39,7 @@ const Register = () => {
     }
 
     return (
-        <div className="hero min-h-screen w-5/6 mx-auto lg:w-full">
+        <div className="hero min-h-screen py-24 mx-auto w-full">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
                 <div className="text-center lg:text-left">
                     <FaUser className='text-5xl mx-auto' />

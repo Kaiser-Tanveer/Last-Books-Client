@@ -15,7 +15,7 @@ const Categories = () => {
     }, [])
     return (
         <div className='pt-14'>
-            <h2 className='text-5xl font-bold py-10'>Get Books for <span>
+            <h2 className='text-5xl font-bold py-10'>Get Books for <span className='text-orange-600'>
                 <Typewriter
                     words={['Primary Secondary and Intermediate']}
                     loop={''}
@@ -26,14 +26,14 @@ const Categories = () => {
                     delaySpeed={1000}
                 />
             </span></h2>
-            <Link onClick='/category' className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                 {
                     categories.map(category => <CategoryCard
                         key={category._id}
                         category={category}
                     />)
                 }
-            </Link>
+            </div>
         </div>
     );
 };

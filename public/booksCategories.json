@@ -3,18 +3,84 @@
         "id": "01",
         "title": "Primary",
         "img": "https://i.ibb.co/f9wM9pQ/primary-Cover.png",
-        "description": "Get all books from Class-1 to Class-5. Your All primary level Books are Here.."
+        "description": "Get all books from Class-1 to Class-5. Your All primary level Books are Here..",
+        "Classes": [
+            {
+                "title": "Class-03",
+                "book": "English for Today",
+                "img": "https://i.ibb.co/6wd2WmN/eftC-3.jpg",
+                "newPrice": 120,
+                "oldPrice": 80,
+                "used": "1 year",
+                "name": "Sala Uddin",
+                "details": "I have read the book for just only one year. So this is not much. I think you will be satisfied reading this book."
+            },
+            {
+                "title": "Class-05",
+                "book": "English for Today",
+                "img": "https://i.ibb.co/DwtfSWF/eftC-5.jpg",
+                "newPrice": 120,
+                "oldPrice": 80,
+                "used": "1 year",
+                "name": "Abu Nayeen",
+                "details": "I love to play. Reading is just boring for me. So I did not read well."
+            }
+        ]
     },
     {
         "id": "02",
         "title": "Secondary",
         "img": "https://i.ibb.co/b55r5Xg/secondary-Cover.png",
-        "description": "Get all books from Class-6 to Class-10. Your All Secondary level Books are Here.."
+        "description": "Get all books from Class-6 to Class-10. Your All Secondary level Books are Here..",
+        "Classes": [
+            {
+                "title": "Class-07",
+                "book": "Mathematics",
+                "img": "https://i.ibb.co/H7WHdc4/mathC-7.jpg",
+                "newPrice": 170,
+                "oldPrice": 100,
+                "used": "1 year",
+                "name": "ala Uddin",
+                "details": "I was a last bencher. So my book is still neat and clean."
+            },
+            {
+                "title": "Class-9/10",
+                "book": "Physics",
+                "img": "https://i.ibb.co/fN3VhM5/phyC-10.png",
+                "newPrice": 220,
+                "oldPrice": 150,
+                "used": "2 years",
+                "name": "Abdul alim",
+                "details": "I did not read much. I had to work. So was not able to touch my books. And it is like new."
+            }
+        ]
     },
     {
         "id": "03",
         "title": "Intermediate",
         "img": "https://i.ibb.co/MRG2jjY/intermediate-Cover.png",
-        "description": "Get all books from Class-11 and Class-12. Your All primary level Books are Here.."
+        "description": "Get all books from Class-11 and Class-12. Your All primary level Books are Here..",
+        "Classes": [
+            {
+                "title": "Class-11/12",
+                "book": "Chemistry",
+                "img": "https://i.ibb.co/LZzKJLH/chemC-11.jpg",
+                "newPrice": 520,
+                "oldPrice": 350,
+                "used": "1 year",
+                "name": "Helal Uddin",
+                "details": "I have experimented so many time with the knowledge from this book. I want you to be helped in  the same way. So I'm selling it."
+            },
+            {
+                "title": "Class-11/12",
+                "book": "Accounting 2",
+                "img": "https://i.ibb.co/CWMDmT5/accounting-C-12.jpg",
+                "newPrice": 120,
+                "oldPrice": 80,
+                "used": "2 year",
+                "name": "Jalal Uddin",
+                "details": "I did not the subject. So I gave up. And I even did not touch that book. So it's mostly new."
+            }
+        ]
     }
 ]
