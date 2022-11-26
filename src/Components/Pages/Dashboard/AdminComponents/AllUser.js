@@ -25,6 +25,19 @@ const AllUser = () => {
                 refetch();
             })
     }
+
+    // User deleting handler 
+    const userDelHandler = id => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data); toast.success('User Deleted Successfully!');
+                refetch();
+            })
+    }
+
     return (
         <div>
             <table className="table w-full">
@@ -55,7 +68,7 @@ const AllUser = () => {
                                         <button onClick={() => verifyHandler(user._id)} className='btn btn-sm btn-success btn-outline'>VERIFY</button>
                                 }
                             </td>
-                            <td><button className='btn btn-sm btn-error'>X</button></td>
+                            <td><button onClick={() => userDelHandler(user._id)} className='btn btn-sm btn-error'>X</button></td>
                         </tr>
                         )
                     }
