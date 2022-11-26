@@ -9,14 +9,19 @@ const MyOrders = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`)
+            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json();
             return data;
         }
     })
 
     return (
-        <div className="overflow-x-auto py-20">
+        <div className="overflow-x-auto">
+            <h2 className='text-5xl font-bold py-10'>My Orders</h2>
             <table className="table w-full">
                 <thead>
                     <tr>

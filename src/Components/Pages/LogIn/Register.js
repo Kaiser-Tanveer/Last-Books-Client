@@ -4,12 +4,19 @@ import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { FaUser, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../MyHooks/useToken/useToken';
 
 const Register = () => {
     const [formError, setFormError] = useState('');
     const { createUser, GoogleLogIn, updateUser } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm('');
     const navigate = useNavigate();
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [token] = useToken(enteredEmail)
+
+    if (token) {
+        navigate('/');
+    }
 
     // Submit Handler 
     const submitHandler = data => {
@@ -49,9 +56,9 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                navigate('/');
+                setEnteredEmail(email);
             })
-    };
+    }
 
     return (
         <div className="hero min-h-screen py-24 mx-auto w-full">

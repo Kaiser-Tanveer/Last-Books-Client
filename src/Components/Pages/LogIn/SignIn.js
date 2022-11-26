@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../MyHooks/useToken/useToken';
 
 const SignIn = () => {
     const [formError, setFormError] = useState('');
@@ -12,6 +13,12 @@ const SignIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
+    const [loggedInEmail, setLoggedInEmail] = useState('');
+    const [token] = useToken(loggedInEmail);
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     // Submit Handler 
     const submitHandler = data => {
@@ -21,7 +28,7 @@ const SignIn = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Logged in Successfully!!');
-                navigate(from, { replace: true });
+                setLoggedInEmail(data.email);
             })
             .catch(err => {
                 console.error(err.message);
