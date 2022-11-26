@@ -5,6 +5,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { FaUser, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import useToken from '../../MyHooks/useToken/useToken';
+import { data } from 'autoprefixer';
 
 const Register = () => {
     const [formError, setFormError] = useState('');
@@ -33,7 +34,7 @@ const Register = () => {
 
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email);
+                        saveUser(data.name, data.email, data.role);
                     })
                     .catch(err => console.error(err));
             })
@@ -43,8 +44,8 @@ const Register = () => {
             });
     }
     // // Saving User 
-    const saveUser = (name, email) => {
-        const user = { name, email };
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
         console.log(user);
         fetch('http://localhost:5000/users', {
             method: 'POST',

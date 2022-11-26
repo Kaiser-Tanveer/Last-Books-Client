@@ -3,7 +3,7 @@ import Advertise from "../Components/Pages/Advertise/Advertise";
 import AllUser from "../Components/Pages/Dashboard/AdminComponents/AllUser";
 import ReportedItems from "../Components/Pages/Dashboard/AdminComponents/ReportedItems";
 import MyOrders from "../Components/Pages/Dashboard/BuyerComponents/MyOrders";
-import MyWishList from "../Components/Pages/Dashboard/BuyerComponents/MyWishList";
+import Report from "../Components/Pages/Dashboard/BuyerComponents/Report";
 import Home from "../Components/Pages/Home/Home";
 import Register from "../Components/Pages/LogIn/Register";
 import SignIn from "../Components/Pages/LogIn/SignIn";
@@ -11,6 +11,7 @@ import NotFound from "../Components/Pages/NotFound/NotFound";
 import Products from "../Components/Pages/Products/Products";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
 
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
@@ -58,8 +59,8 @@ const router = createBrowserRouter([
                 element: <MyOrders />
             },
             {
-                path: '/dashboard/myWishlist',
-                element: <MyWishList />
+                path: '/dashboard/report',
+                element: <Report />
             },
             {
                 path: '/dashboard/allUsers',
