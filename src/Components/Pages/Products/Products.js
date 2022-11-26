@@ -5,8 +5,8 @@ import ProductMedia from './ProductMedia/ProductMedia';
 
 const Products = () => {
     const navigation = useNavigation();
-    const products = useLoaderData({});
-    const { classes } = products;
+    const products = useLoaderData();
+    console.log(products);
 
     if (navigation.state === "loading") {
         return <Spinner />
@@ -14,7 +14,7 @@ const Products = () => {
     return (
         <div className='w-5/6 mx-auto py-24 rounded-xl grid grid-cols-1 gap-10'>
             {
-                classes.map((product, i) => <ProductMedia
+                products.map((product, i) => <ProductMedia
                     key={i}
                     product={product}
                 />)

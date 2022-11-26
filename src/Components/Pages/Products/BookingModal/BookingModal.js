@@ -50,7 +50,7 @@ const BookingModal = ({ books: product, setBook }) => {
                     toast.error(data.message);
                 }
             })
-        setBook(null);
+        setBook('');
     }
     return (
         <div>

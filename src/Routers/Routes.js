@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddProducts from "../Components/Pages/AddProducts/AddProducts";
 import Advertise from "../Components/Pages/Advertise/Advertise";
 import AllUser from "../Components/Pages/Dashboard/AdminComponents/AllUser";
 import ReportedItems from "../Components/Pages/Dashboard/AdminComponents/ReportedItems";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
+                path: '/addProducts',
+                element: <AddProducts />
+            },
+            {
                 path: '/advertise',
                 element: <Advertise />
             },
@@ -39,10 +44,15 @@ const router = createBrowserRouter([
                 element: <SignIn />
             },
             {
-                path: '/categories/:id',
+                path: '/products/:title',
                 element: <Products />,
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.title}`)
             },
+            // {
+            //     path: '/categories/:title',
+            //     element: <Products />,
+            //     loader: ({ params }) => fetch(`http://localhost:5000/products/${params.title}`)
+            // },
         ]
     },
     {

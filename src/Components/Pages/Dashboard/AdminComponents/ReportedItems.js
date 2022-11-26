@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const ReportedItems = () => {
     // Loading reported items
@@ -20,6 +21,7 @@ const ReportedItems = () => {
                     <th>Buyer Name</th>
                     <th>Buyer Email</th>
                     <th>Buyer Phone</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +34,7 @@ const ReportedItems = () => {
                         <td>{items.buyer}</td>
                         <td>{items.email}</td>
                         <td>{items.phone}</td>
+                        <td><button className='btn btn-ghost'><FaTrashAlt className='text-error' /></button></td>
                     </tr>
                     )
                 }

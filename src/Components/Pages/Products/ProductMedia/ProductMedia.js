@@ -4,7 +4,7 @@ import ProductCard from '../ProductCard';
 
 const ProductMedia = ({ product }) => {
     const [books, setBook] = useState(product);
-    console.log(books);
+    // console.log(books);
     return (
         <div>
             <ProductCard

@@ -35,7 +35,7 @@ const AllUser = () => {
             .then(data => {
                 console.log(data); toast.success('User Deleted Successfully!');
                 refetch();
-            })
+            });
     }
 
     return (

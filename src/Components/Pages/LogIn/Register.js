@@ -5,7 +5,6 @@ import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { FaUser, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import useToken from '../../MyHooks/useToken/useToken';
-import { data } from 'autoprefixer';
 
 const Register = () => {
     const [formError, setFormError] = useState('');
@@ -77,8 +76,8 @@ const Register = () => {
                                     <span className="label-text">Select what you're Registering for:</span>
                                 </label>
                                 <select {...register("role", { required: 'role is required' })} placeholder="Register as Seller/Buyer" className="select select-bordered w-full">
-                                    <option value="seller">Seller</option>
                                     <option value="buyer">Buyer</option>
+                                    <option value="seller">Seller</option>
                                 </select>
                             </div>
                             <div className="form-control w-full">
@@ -113,9 +112,10 @@ const Register = () => {
                             <button onClick={() => GoogleLogIn()
                                 .then(result => {
                                     const user = result.user;
+                                    saveUser(user.displayName, user.email);
                                     console.log(user);
                                     navigate('/')
-                                    toast.success('Signed in Successfully!')
+                                    toast.success('Signed in Successfully!');
                                 })
                                 .then(err => console.error(err))
                             } className='btn btn-outline w-full'><FaGoogle className='mx-5 font-bold' />CONTINUE WITH GOOGLE</button>

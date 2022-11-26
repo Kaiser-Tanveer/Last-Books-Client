@@ -1,0 +1,20 @@
+[
+    {
+        "cat_id": "01",
+        "title": "Primary",
+        "img": "https://i.ibb.co/f9wM9pQ/primary-Cover.png",
+        "description": "Get all books from Class-1 to Class-5. Your All primary level Books are Here.."
+    },
+    {
+        "cat_id": "02",
+        "title": "Secondary",
+        "img": "https://i.ibb.co/b55r5Xg/secondary-Cover.png",
+        "description": "Get all books from Class-6 to Class-10. Your All Secondary level Books are Here.."
+    },
+    {
+        "cat_id": "03",
+        "title": "Intermediate",
+        "img": "https://i.ibb.co/MRG2jjY/intermediate-Cover.png",
+        "description": "Get all books from Class-11 and Class-12. Your All primary level Books are Here.."
+    }
+]
