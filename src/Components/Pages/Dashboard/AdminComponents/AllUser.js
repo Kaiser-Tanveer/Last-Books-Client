@@ -4,10 +4,10 @@ import { toast } from 'react-hot-toast';
 import { FaCheck } from 'react-icons/fa';
 
 const AllUser = () => {
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = fetch('http://localhost:5000/users')
+            const res = fetch('http://localhost:5000/users');
             const data = (await res).json();
             return data;
         }
@@ -15,12 +15,14 @@ const AllUser = () => {
 
     // Verify Handler 
     const verifyHandler = id => {
+        console.log(id);
         fetch(`http://localhost:5000/users/verified/${id}`, {
-            method: 'PUT',
+            method: 'PUT'
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                console.log(data); toast.success('Verified Successfully!');
+                refetch();
             })
     }
     return (
@@ -45,7 +47,14 @@ const AllUser = () => {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>{user.role ? user.role : 'buyer'}</td>
-                            <td><button onClick={() => verifyHandler(user._id)} className='btn btn-sm'><FaCheck className='text-blue-500' /></button></td>
+                            <td>
+                                {
+                                    user.verify ?
+                                        <h4 className='text-success font-semibold'><FaCheck className='text-blue-500' /></h4>
+                                        :
+                                        <button onClick={() => verifyHandler(user._id)} className='btn btn-sm btn-success btn-outline'>VERIFY</button>
+                                }
+                            </td>
                             <td><button className='btn btn-sm btn-error'>X</button></td>
                         </tr>
                         )

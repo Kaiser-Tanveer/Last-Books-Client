@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
+import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 
@@ -19,6 +20,18 @@ const MyOrders = () => {
             return data;
         }
     })
+
+    // Deleting order 
+    const deleteHandler = id => {
+        fetch(`http://localhost:5000/bookings/reported/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(() => {
+                toast.success('Deleted Successfully!');
+                refetch();
+            })
+    }
 
     // Handling Reports 
     const reportHandler = id => {
@@ -63,7 +76,7 @@ const MyOrders = () => {
                                         <td>{order.productName}</td>
                                         <td>{order.usedTime}</td>
                                         <td>{order.oldPrice}</td>
-                                        <td><button className='btn btn-sm btn-error'>X</button></td>
+                                        <td><button onClick={() => deleteHandler(order._id)} className='btn btn-sm btn-error btn-outline'><FaTrashAlt /></button></td>
                                         <td>
                                             {
                                                 order.reported ?
