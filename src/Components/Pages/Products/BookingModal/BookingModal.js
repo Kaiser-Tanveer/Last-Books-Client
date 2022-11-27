@@ -4,8 +4,9 @@ import { useNavigation } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 import Spinner from '../../Spinner/Spinner';
 
-const BookingModal = ({ books: product, setBook }) => {
-    const { user } = useContext(AuthContext);
+const BookingModal = ({ modalData: product, setModalData }) => {
+    console.log(product);
+    const { user, loading } = useContext(AuthContext);
     const { book, title, newPrice, oldPrice, used } = product;
     // console.log(title);
     const navigation = useNavigation();
@@ -50,14 +51,17 @@ const BookingModal = ({ books: product, setBook }) => {
                     toast.error(data.message);
                 }
             })
-        setBook('');
+    }
+
+    if (loading) {
+        return <Spinner />
     }
     return (
         <div>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label onClick={() => setModalData(null)} htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">{book} for {title}</h3>
                     <form onSubmit={bookingHandler}>
                         <input name='name' type="text" defaultValue={user?.displayName} className="input input-bordered w-full my-3" disabled />

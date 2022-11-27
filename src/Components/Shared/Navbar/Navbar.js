@@ -17,8 +17,6 @@ const Navbar = () => {
     // MenuItems variable 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/addProducts'>Add Products</Link></li>
-        <li><Link to='/advertise'>Advertise Items</Link></li>
         {
             user &&
             <li><Link to='/dashboard'>Dashboard</Link></li>

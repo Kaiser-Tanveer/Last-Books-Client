@@ -1,4 +1,5 @@
 import React from 'react';
+import Advertise from '../Advertise/Advertise';
 import Categories from './Categories/Categories';
 import Slider from './Slider/Slider';
 import WhyUsedBooks from './WhyUsedBooks/WhyUsedBooks';
@@ -9,6 +10,7 @@ const Home = () => {
             <Slider />
             <Categories />
             <WhyUsedBooks />
+            <Advertise />
         </div>
     );
 };

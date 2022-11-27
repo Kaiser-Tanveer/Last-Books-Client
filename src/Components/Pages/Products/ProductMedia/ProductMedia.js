@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import BookingModal from '../BookingModal/BookingModal';
 import ProductCard from '../ProductCard';
 
-const ProductMedia = ({ product }) => {
-    const [books, setBook] = useState(product);
-    // console.log(books);
+const ProductMedia = ({ product, user, refetch }) => {
+    const [modalData, setModalData] = useState({});
+    console.log(user);
     return (
         <div>
             <ProductCard
+                setModalData={setModalData}
                 product={product}
             />
             {
-                books &&
+                modalData &&
                 <BookingModal
-                    books={books}
-                    setBook={setBook}
+                    modalData={modalData}
+                    setModalData={setModalData}
                 />
             }
         </div>

@@ -30,7 +30,7 @@ const Slider = () => {
             <div className="carousel w-full py-10">
                 {
                     sliderData.map(slider => <SliderItems
-                        key={slider._id}
+                        key={slider.id}
                         slider={slider}
                     />)
                 }

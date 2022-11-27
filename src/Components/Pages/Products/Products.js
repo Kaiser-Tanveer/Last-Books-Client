@@ -6,7 +6,8 @@ import ProductMedia from './ProductMedia/ProductMedia';
 const Products = () => {
     const navigation = useNavigation();
     const products = useLoaderData();
-    console.log(products);
+
+
 
     if (navigation.state === "loading") {
         return <Spinner />

@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
+import Spinner from '../Spinner/Spinner';
 
 const AddProducts = () => {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const imageSec = process.env.REACT_APP_IMAGEBB_SEC;
-    console.log(imageSec);
     const { register, formState: { errors }, handleSubmit } = useForm('');
+    const navigate = useNavigate();
 
     // Handling Products 
     const productsHandler = data => {
@@ -21,11 +24,10 @@ const AddProducts = () => {
             .then(res => res.json())
             .then(imgData => {
                 if (imgData.success) {
-                    // console.log(imgData.data.url);
-
 
                     const productsData = {
-                        title: data.title,
+                        titleName: data.title,
+                        email: data.email,
                         book: data.book,
                         img: imgData.data.url,
                         details: data.details,
@@ -37,12 +39,24 @@ const AddProducts = () => {
                     }
                     console.log(productsData);
 
-
+                    fetch('http://localhost:5000/products', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(productsData)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (loading) {
+                                return <Spinner />
+                            }
+                            toast.success('Product Added Successfully!');
+                            navigate('/myProducts');
+                        })
                 }
             })
-
-
-        // console.log(productsData);
     }
     return (
         <div className='lg:w-4/5 mx-auto card shadow-xl border-2 py-12 my-24'>
@@ -53,9 +67,9 @@ const AddProducts = () => {
                         <span className="label-text">Select the Category:</span>
                     </label>
                     <select {...register("title", { required: 'Category is required' })} className="select select-bordered w-full">
-                        <option value="primary">Primary</option>
-                        <option value="secondary">Secondary</option>
-                        <option value="intermediate">Intermediate</option>
+                        <option value="Primary">Primary</option>
+                        <option value="Secondary">Secondary</option>
+                        <option value="Intermediate">Intermediate</option>
                     </select>
                 </div>
                 <div className="form-control w-full">
@@ -76,8 +90,15 @@ const AddProducts = () => {
                     <label className="label">
                         <span className="label-text">Seller Name</span>
                     </label>
-                    <input type="text" {...register("name", { required: 'Name is required' })} defaultValue={user?.displayName} className="input input-bordered w-full" />
+                    <input type="text" {...register("name", { required: 'Name is required' })} defaultValue={user?.displayName} className="input input-bordered w-full" readOnly />
                     {errors.name && <p className='text-error'>{errors.name.message}</p>}
+                </div>
+                <div className="form-control w-full">
+                    <label className="label">
+                        <span className="label-text">Email</span>
+                    </label>
+                    <input type="email" {...register("email", { required: 'Email is required' })} defaultValue={user?.email} className="input input-bordered w-full" readOnly />
+                    {errors.email && <p className='text-error'>{errors.email.message}</p>}
                 </div>
                 <div className="form-control w-full">
                     <label className="label">

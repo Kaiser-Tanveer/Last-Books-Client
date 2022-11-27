@@ -28,14 +28,17 @@ const AllUser = () => {
 
     // User deleting handler 
     const userDelHandler = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data); toast.success('User Deleted Successfully!');
-                refetch();
-            });
+        const permission = window.alert('Sure to delete this user!');
+        if (permission) {
+            fetch(`http://localhost:5000/users/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data); toast.success('User Deleted Successfully!');
+                    refetch();
+                });
+        }
     }
 
     return (

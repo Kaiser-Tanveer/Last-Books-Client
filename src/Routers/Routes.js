@@ -5,6 +5,7 @@ import Blog from "../Components/Pages/Blog/Blog";
 import AllUser from "../Components/Pages/Dashboard/AdminComponents/AllUser";
 import ReportedItems from "../Components/Pages/Dashboard/AdminComponents/ReportedItems";
 import MyOrders from "../Components/Pages/Dashboard/BuyerComponents/MyOrders";
+import MyProducts from "../Components/Pages/Dashboard/SellerComponents/MyProducts";
 import Home from "../Components/Pages/Home/Home";
 import Register from "../Components/Pages/LogIn/Register";
 import SignIn from "../Components/Pages/LogIn/SignIn";
@@ -29,10 +30,6 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: '/addProducts',
-                element: <AddProducts />
-            },
-            {
                 path: '/advertise',
                 element: <Advertise />
             },
@@ -49,15 +46,10 @@ const router = createBrowserRouter([
                 element: <Blog />
             },
             {
-                path: '/products/:title',
+                path: '/products/:titleName',
                 element: <Products />,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.title}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.titleName}`)
             },
-            // {
-            //     path: '/categories/:title',
-            //     element: <Products />,
-            //     loader: ({ params }) => fetch(`http://localhost:5000/products/${params.title}`)
-            // },
         ]
     },
     {
@@ -66,15 +58,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <MyOrders />
+                element: <PrivateRoute><MyOrders /></PrivateRoute>
             },
             {
                 path: '/dashboard/myOrders',
                 element: <MyOrders />
             },
             {
+                path: '/dashboard/myProducts',
+                element: <MyProducts />
+            },
+            {
                 path: '/dashboard/allUsers',
                 element: <AllUser />
+            },
+            {
+                path: '/dashboard/addProducts',
+                element: <AddProducts />
             },
             {
                 path: '/dashboard/reported',
