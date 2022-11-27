@@ -15,7 +15,7 @@ const Products = () => {
     return (
         <div className='w-5/6 mx-auto py-24 rounded-xl grid grid-cols-1 gap-10'>
             {
-                products.map((product, i) => <ProductMedia
+                products?.map((product, i) => <ProductMedia
                     key={i}
                     product={product}
                 />)

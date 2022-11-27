@@ -7,9 +7,9 @@ const ReportedItems = () => {
     const { data: items = [] } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {
-            const res = fetch('http://localhost:5000/bookings/reported');
-            const data = (await res).json();
-            return (data)
+            const res = await fetch('http://localhost:5000/bookings/reported');
+            const data = await res.json();
+            return (data);
         }
     })
     return (
@@ -26,7 +26,7 @@ const ReportedItems = () => {
             </thead>
             <tbody>
                 {
-                    items.map((items, i) => <tr
+                    items?.map((items, i) => <tr
                         key={items._id}
                     >
                         <th>{i + 1}</th>

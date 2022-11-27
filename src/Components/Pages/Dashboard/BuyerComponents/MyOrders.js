@@ -68,7 +68,7 @@ const MyOrders = () => {
                             </thead>
                             <tbody>
                                 {
-                                    orders.map((order, i) => <tr
+                                    orders?.map((order, i) => <tr
                                         key={i}
                                     >
                                         <th>{i + 1}</th>

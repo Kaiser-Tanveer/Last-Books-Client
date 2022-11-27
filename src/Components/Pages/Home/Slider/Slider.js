@@ -29,7 +29,7 @@ const Slider = () => {
         <div>
             <div className="carousel w-full py-10">
                 {
-                    sliderData.map(slider => <SliderItems
+                    sliderData?.map(slider => <SliderItems
                         key={slider.id}
                         slider={slider}
                     />)

@@ -15,9 +15,9 @@ const MyProducts = () => {
         }
     })
     return (
-        <div>
+        <div className='grid lg:grid-cols-2 gap-2 my-20'>
             {
-                myProducts.map(myProduct => <MyProdCard
+                myProducts?.map(myProduct => <MyProdCard
                     key={myProduct._id}
                     myProduct={myProduct}
                 />)

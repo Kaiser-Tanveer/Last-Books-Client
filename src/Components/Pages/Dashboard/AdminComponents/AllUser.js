@@ -17,7 +17,10 @@ const AllUser = () => {
     const verifyHandler = id => {
         console.log(id);
         fetch(`http://localhost:5000/users/verified/${id}`, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -56,7 +59,7 @@ const AllUser = () => {
                 </thead>
                 <tbody>
                     {
-                        users.map((user, i) => <tr
+                        users?.map((user, i) => <tr
                             key={user._id}
                         >
                             <th>{i + 1}</th>
