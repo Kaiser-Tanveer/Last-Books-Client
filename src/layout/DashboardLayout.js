@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import useAdmin from '../Components/MyHooks/useAdmin/useAdmin';
 import Footer from '../Components/Shared/Footer/Footer';
 import Navbar from '../Components/Shared/Navbar/Navbar';
 
@@ -18,8 +19,13 @@ const DashboardLayout = () => {
                         <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
                         <li><Link to='/dashboard/myProducts'>My Products</Link></li>
                         <li><Link to='/dashboard/addProducts'>Add a Product</Link></li>
-                        <li><Link to='/dashboard/allUsers'>All Users</Link></li>
-                        <li><Link to='/dashboard/reported'>Reported Items</Link></li>
+                        {
+                            useAdmin &&
+                            <>
+                                <li><Link to='/dashboard/allUsers'>All Users</Link></li>
+                                <li><Link to='/dashboard/reported'>Reported Items</Link></li>
+                            </>
+                        }
                     </ul>
 
                 </div>

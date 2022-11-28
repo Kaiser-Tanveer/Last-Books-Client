@@ -13,6 +13,7 @@ import NotFound from "../Components/Pages/NotFound/NotFound";
 import Products from "../Components/Pages/Products/Products";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
+import AdminRoute from "./AdminRoute/AdminRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -74,11 +75,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addProducts',
-                element: <AddProducts />
+                element: <AdminRoute><AddProducts /></AdminRoute>
             },
             {
                 path: '/dashboard/reported',
-                element: <ReportedItems />
+                element: <AdminRoute><ReportedItems /></AdminRoute>
             },
         ]
     },
