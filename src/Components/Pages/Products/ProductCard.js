@@ -1,12 +1,11 @@
 import React from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
 import { HiLocationMarker } from 'react-icons/hi';
 
 const ProductCard = ({ product, setModalData }) => {
     const { book, title, location, name, img, newPrice, oldPrice, used, details } = product;
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200 rounded-md shadow-lg">
             <div className="hero-content flex-col lg:flex-row">
                 <img src={img} className="rounded-lg max-w-[300px] shadow-2xl" alt='bookImg' />
                 <div className='lg:w-[480px] mx-auto text-center'>

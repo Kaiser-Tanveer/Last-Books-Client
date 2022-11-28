@@ -44,7 +44,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <button onClick={logOutHandler} className='btn mr-auto lg:mr-0'>LogOut</button>
+                        <button onClick={logOutHandler} className='btn mx-auto lg:mr-0'>LogOut</button>
                         :
                         <Link className="btn mr-auto lg:mr-0" to='/register'>Register</Link>
                 }
