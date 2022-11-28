@@ -7,8 +7,6 @@ const Products = () => {
     const navigation = useNavigation();
     const products = useLoaderData();
 
-
-
     if (navigation.state === "loading") {
         return <Spinner />
     }

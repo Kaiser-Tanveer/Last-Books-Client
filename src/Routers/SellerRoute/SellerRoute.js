@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import useAdmin from '../../Components/MyHooks/useAdmin/useAdmin';
+import useSeller from '../../Components/MyHooks/useSeller/useSeller';
 import Spinner from '../../Components/Pages/Spinner/Spinner';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
-const AdminRoute = ({ children }) => {
+const SellerRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
-    const [isSeller, sellerLoading] = useAdmin(user?.email);
+    const [isSeller, sellerLoading] = useSeller(user?.email);
     const location = useLocation();
 
     if (loading || sellerLoading) {
@@ -18,4 +18,4 @@ const AdminRoute = ({ children }) => {
     return <Navigate to='/logIn' state={{ from: location }} replace />
 };
 
-export default AdminRoute;
+export default SellerRoute;
