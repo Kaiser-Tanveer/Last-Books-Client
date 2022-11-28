@@ -11,7 +11,7 @@ const MyOrders = () => {
     const { data: orders = [], refetch } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`)
+            const res = await fetch(`https://used-books-server.vercel.app/bookings?email=${user?.email}`)
             const data = await res.json();
             return data;
         }
@@ -21,7 +21,7 @@ const MyOrders = () => {
     const deleteHandler = id => {
         const proceed = window.confirm('Sure to delete this booking!');
         if (proceed) {
-            fetch(`http://localhost:5000/bookings/reported/${id}`, {
+            fetch(`https://used-books-server.vercel.app/bookings/reported/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -37,7 +37,7 @@ const MyOrders = () => {
 
     // Handling Reports 
     const reportHandler = id => {
-        fetch(`http://localhost:5000/bookings/reported/${id}`, {
+        fetch(`https://used-books-server.vercel.app/bookings/reported/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -74,7 +74,7 @@ const MyOrders = () => {
                             <tbody>
                                 {
                                     orders?.map((order, i) => <tr
-                                        key={i}
+                                        key={order._id}
                                     >
                                         <th>{i + 1}</th>
                                         <td>{order.buyer}</td>
@@ -90,7 +90,16 @@ const MyOrders = () => {
                                                     <button onClick={() => reportHandler(order._id)} className='btn btn-sm btn-secondary'>REPORT</button>
                                             }
                                         </td>
-                                        <td><Link className='btn btn-sm btn-success' to=''>Pay</Link></td>
+                                        <td>
+                                            {
+                                                order.oldPrice && !order.paid &&
+                                                <Link className='btn btn-sm btn-success' to={`/dashboard/payments/${order._id}`}>Pay</Link>
+                                            }
+                                            {
+                                                order.oldPrice && order.paid &&
+                                                <Link className='text-success font-semibold' to={''}>PAID</Link>
+                                            }
+                                        </td>
                                     </tr>
                                     )
                                 }

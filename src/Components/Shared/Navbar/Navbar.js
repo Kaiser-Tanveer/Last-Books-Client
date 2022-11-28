@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { FaBars } from 'react-icons/fa'
 
@@ -16,12 +16,12 @@ const Navbar = () => {
 
     // MenuItems variable 
     const menuItems = <>
-        <li><Link to='/'>Home</Link></li>
+        <li><NavLink className='rounded-md' to='/'>Home</NavLink></li>
         {
             user &&
-            <li><Link to='/dashboard'>Dashboard</Link></li>
+            <li><NavLink className='rounded-md' to='/dashboard'>Dashboard</NavLink></li>
         }
-        <li><Link to='/blog'>Blog</Link></li>
+        <li><NavLink className='rounded-md' to='/blog'>Blog</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100">

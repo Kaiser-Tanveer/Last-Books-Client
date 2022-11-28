@@ -46,7 +46,7 @@ const Register = () => {
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
         console.log(user);
-        fetch('http://localhost:5000/users', {
+        fetch('https://used-books-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

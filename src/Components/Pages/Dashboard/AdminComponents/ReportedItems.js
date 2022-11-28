@@ -7,7 +7,7 @@ const ReportedItems = () => {
     const { data: items = [], refetch } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/bookings/reported');
+            const res = await fetch('https://used-books-server.vercel.app/bookings/reported');
             const data = await res.json();
             return (data);
         }
@@ -17,7 +17,7 @@ const ReportedItems = () => {
     const removeHandler = id => {
         const proceed = window.confirm('Sure to delete this Report!');
         if (proceed) {
-            fetch(`http://localhost:5000/bookings/reported/${id}`, {
+            fetch(`https://used-books-server.vercel.app/bookings/reported/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

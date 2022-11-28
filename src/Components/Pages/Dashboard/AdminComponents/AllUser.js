@@ -7,7 +7,7 @@ const AllUser = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = fetch('http://localhost:5000/users', {
+            const res = fetch('https://used-books-server.vercel.app/users', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -20,7 +20,7 @@ const AllUser = () => {
     // Verify Handler 
     const verifyHandler = id => {
         console.log(id);
-        fetch(`http://localhost:5000/users/verified/${id}`, {
+        fetch(`https://used-books-server.vercel.app/users/verified/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -37,7 +37,7 @@ const AllUser = () => {
     const userDelHandler = id => {
         const permission = window.confirm('Sure to delete this user!');
         if (permission) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://used-books-server.vercel.app/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`

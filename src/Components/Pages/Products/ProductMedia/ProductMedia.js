@@ -30,7 +30,7 @@ const ProductMedia = ({ product }) => {
                 product={product}
             />
             {
-                modalData &&
+                modalData && modalData.oldPrice &&
                 <BookingModal
                     modalData={modalData}
                     setModalData={setModalData}

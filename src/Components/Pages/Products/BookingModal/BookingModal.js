@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigate, useNavigation } from 'react-router-dom';
+import { Link, useNavigate, useNavigation } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 import Spinner from '../../Spinner/Spinner';
 
@@ -32,7 +32,7 @@ const BookingModal = ({ modalData: product, setModalData }) => {
         console.log(booking);
 
         // Sending Booking data to backend
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://used-books-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -71,10 +71,10 @@ const BookingModal = ({ modalData: product, setModalData }) => {
                         <input name='phone' type="number" placeholder="Your Phone" className="input input-bordered w-full my-3" required />
                         <textarea name='location' className="textarea textarea-bordered w-full my-3" placeholder="You Location" required></textarea>
                         {
-                            !user && <p>Please login to create a Booking</p>
+                            !user && <p className='text-center font-semibold text-xl border-2 border-error'>Please <Link to='/logIn' className='link-hover link-success'>login</Link> to create a Booking</p>
                         }
                         <input type="submit" value='Submit' className={user ?
-                            "btn btn-accent w-full"
+                            "btn btn-success w-full"
                             :
                             "btn btn-accent w-full btn-disabled"
                         } />

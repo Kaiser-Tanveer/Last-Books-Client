@@ -5,6 +5,7 @@ import Blog from "../Components/Pages/Blog/Blog";
 import AllUser from "../Components/Pages/Dashboard/AdminComponents/AllUser";
 import ReportedItems from "../Components/Pages/Dashboard/AdminComponents/ReportedItems";
 import MyOrders from "../Components/Pages/Dashboard/BuyerComponents/MyOrders";
+import Payment from "../Components/Pages/Dashboard/Payment/Payment";
 import MyProducts from "../Components/Pages/Dashboard/SellerComponents/MyProducts";
 import Home from "../Components/Pages/Home/Home";
 import Register from "../Components/Pages/LogIn/Register";
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
             {
                 path: '/products/:titleName',
                 element: <Products />,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.titleName}`)
+                loader: ({ params }) => fetch(`https://used-books-server.vercel.app/products/${params.titleName}`)
             },
         ]
     },
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myOrders',
                 element: <MyOrders />
+            },
+            {
+                path: '/dashboard/payments/:id',
+                element: <Payment />,
+                loader: ({ params }) => fetch(`https://used-books-server.vercel.app/bookings/${params.id}`)
             },
             {
                 path: '/dashboard/myProducts',
