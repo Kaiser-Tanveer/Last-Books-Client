@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaTrashAlt } from 'react-icons/fa';
 
 const AllUser = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = fetch('http://localhost:5000/users');
+            const res = fetch('http://localhost:5000/users', {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = (await res).json();
             return data;
         }
@@ -31,15 +35,21 @@ const AllUser = () => {
 
     // User deleting handler 
     const userDelHandler = id => {
-        const permission = window.alert('Sure to delete this user!');
+        const permission = window.confirm('Sure to delete this user!');
         if (permission) {
             fetch(`http://localhost:5000/users/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data); toast.success('User Deleted Successfully!');
-                    refetch();
+                    if (data.deletedCount > 0) {
+                        console.log(data);
+                        toast.success('User Deleted Successfully!');
+                        refetch();
+                    }
                 });
         }
     }
@@ -74,7 +84,7 @@ const AllUser = () => {
                                         <button onClick={() => verifyHandler(user._id)} className='btn btn-sm btn-success btn-outline'>VERIFY</button>
                                 }
                             </td>
-                            <td><button onClick={() => userDelHandler(user._id)} className='btn btn-sm btn-error'>X</button></td>
+                            <td><button onClick={() => userDelHandler(user._id)} className='btn btn-sm btn-error'><FaTrashAlt /></button></td>
                         </tr>
                         )
                     }

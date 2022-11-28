@@ -11,11 +11,7 @@ const MyOrders = () => {
     const { data: orders = [], refetch } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
+            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`)
             const data = await res.json();
             return data;
         }
@@ -23,20 +19,29 @@ const MyOrders = () => {
 
     // Deleting order 
     const deleteHandler = id => {
-        fetch(`http://localhost:5000/bookings/reported/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(() => {
-                toast.success('Deleted Successfully!');
-                refetch();
+        const proceed = window.confirm('Sure to delete this booking!');
+        if (proceed) {
+            fetch(`http://localhost:5000/bookings/reported/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
+                .then(res => res.json())
+                .then(() => {
+                    toast.success('Deleted Successfully!');
+                    refetch();
+                });
+        };
     }
 
     // Handling Reports 
     const reportHandler = id => {
         fetch(`http://localhost:5000/bookings/reported/${id}`, {
             method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -80,7 +85,7 @@ const MyOrders = () => {
                                         <td>
                                             {
                                                 order.reported ?
-                                                    <h4 className='text-error font-bold'>REPORTED</h4>
+                                                    <h4 className='text-error font-bold'> REPORTED</h4>
                                                     :
                                                     <button onClick={() => reportHandler(order._id)} className='btn btn-sm btn-secondary'>REPORT</button>
                                             }

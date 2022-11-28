@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigation } from 'react-router-dom';
+import { useNavigate, useNavigation } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 import Spinner from '../../Spinner/Spinner';
 
 const BookingModal = ({ modalData: product, setModalData }) => {
-    console.log(product);
-    const { user, loading } = useContext(AuthContext);
+    const navigate = useNavigate();
+    // console.log(product);
+    const { user } = useContext(AuthContext);
     const { book, title, newPrice, oldPrice, used } = product;
     // console.log(title);
     const navigation = useNavigation();
@@ -42,6 +43,7 @@ const BookingModal = ({ modalData: product, setModalData }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
+                    navigate('/dashboard/myOrders');
                     toast.success('Booking Confirmed');
                     if (navigation.state === "loading") {
                         return <Spinner />
@@ -51,10 +53,6 @@ const BookingModal = ({ modalData: product, setModalData }) => {
                     toast.error(data.message);
                 }
             })
-    }
-
-    if (loading) {
-        return <Spinner />
     }
     return (
         <div>

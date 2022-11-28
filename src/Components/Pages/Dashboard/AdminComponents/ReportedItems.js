@@ -4,14 +4,28 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 const ReportedItems = () => {
     // Loading reported items
-    const { data: items = [] } = useQuery({
+    const { data: items = [], refetch } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/bookings/reported');
             const data = await res.json();
             return (data);
         }
-    })
+    });
+
+    // Remove Item 
+    const removeHandler = id => {
+        const proceed = window.confirm('Sure to delete this Report!');
+        if (proceed) {
+            fetch(`http://localhost:5000/bookings/reported/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    refetch();
+                })
+        }
+    }
     return (
         <table className="table w-full">
             <thead>
@@ -34,7 +48,7 @@ const ReportedItems = () => {
                         <td>{items.buyer}</td>
                         <td>{items.email}</td>
                         <td>{items.phone}</td>
-                        <td><button className='btn btn-ghost'><FaTrashAlt className='text-error' /></button></td>
+                        <td><button onClick={() => removeHandler(items._id)} className='btn btn-ghost'><FaTrashAlt className='text-error' /></button></td>
                     </tr>
                     )
                 }

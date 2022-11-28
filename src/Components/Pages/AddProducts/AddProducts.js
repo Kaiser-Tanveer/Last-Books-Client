@@ -25,6 +25,12 @@ const AddProducts = () => {
             .then(imgData => {
                 if (imgData.success) {
 
+                    const currentDate = new Date();
+                    const date = currentDate.toLocaleDateString("en-US", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    });
+
                     const productsData = {
                         titleName: data.title,
                         email: data.email,
@@ -35,7 +41,8 @@ const AddProducts = () => {
                         newPrice: data.newPrice,
                         oldPrice: data.oldPrice,
                         used: data.used,
-                        name: data.name
+                        name: data.name,
+                        date
                     }
                     console.log(productsData);
 
@@ -48,12 +55,12 @@ const AddProducts = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
                             if (loading) {
                                 return <Spinner />
                             }
                             toast.success('Product Added Successfully!');
-                            navigate('/myProducts');
+                            navigate('/dashboard/myProducts');
                         })
                 }
             })
