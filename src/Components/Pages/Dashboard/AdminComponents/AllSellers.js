@@ -3,16 +3,17 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 import { FaCheck, FaTrashAlt } from 'react-icons/fa';
 
-const AllUser = () => {
+const AllSellers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = fetch('https://used-books-server.vercel.app/users', {
+            const res = fetch('https://used-books-server.vercel.app/users/sellers', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = (await res).json();
+            console.log(data);
             return data;
         }
     })
@@ -20,7 +21,7 @@ const AllUser = () => {
     // Verify Handler 
     const verifyHandler = id => {
         console.log(id);
-        fetch(`https://used-books-server.vercel.app/users/verified/${id}`, {
+        fetch(`https://used-books-server.vercel.app/users/sellers/verified/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -37,7 +38,7 @@ const AllUser = () => {
     const userDelHandler = id => {
         const permission = window.confirm('Sure to delete this user!');
         if (permission) {
-            fetch(`https://used-books-server.vercel.app/users/${id}`, {
+            fetch(`https://used-books-server.vercel.app/users/sellers/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -94,4 +95,4 @@ const AllUser = () => {
     );
 };
 
-export default AllUser;
+export default AllSellers;

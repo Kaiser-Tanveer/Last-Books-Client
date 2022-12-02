@@ -112,7 +112,12 @@ const Register = () => {
                             <button onClick={() => GoogleLogIn()
                                 .then(result => {
                                     const user = result.user;
-                                    saveUser(user.displayName, user.email);
+                                    const buyerInfo = {
+                                        name: user.displayName,
+                                        email: user.email,
+                                        role: 'buyer',
+                                    }
+                                    saveUser(buyerInfo.name, buyerInfo.email, buyerInfo.role);
                                     console.log(user);
                                     navigate('/')
                                     toast.success('Signed in Successfully!');

@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import AddProducts from "../Components/Pages/AddProducts/AddProducts";
 import Advertise from "../Components/Pages/Advertise/Advertise";
 import Blog from "../Components/Pages/Blog/Blog";
-import AllUser from "../Components/Pages/Dashboard/AdminComponents/AllUser";
+import AllBuyers from "../Components/Pages/Dashboard/AdminComponents/AllBuyers";
+import AllSellers from "../Components/Pages/Dashboard/AdminComponents/AllSellers";
 import ReportedItems from "../Components/Pages/Dashboard/AdminComponents/ReportedItems";
 import MyOrders from "../Components/Pages/Dashboard/BuyerComponents/MyOrders";
 import Payment from "../Components/Pages/Dashboard/Payment/Payment";
@@ -81,8 +82,12 @@ const router = createBrowserRouter([
                 element: <SellerRoute><AddProducts /></SellerRoute>
             },
             {
-                path: '/dashboard/allUsers',
-                element: <AdminRoute><AllUser /></AdminRoute>
+                path: '/dashboard/users/sellers',
+                element: <AdminRoute><AllSellers /></AdminRoute>
+            },
+            {
+                path: '/dashboard/users/buyers',
+                element: <AdminRoute><AllBuyers /></AdminRoute>
             },
             {
                 path: '/dashboard/reported',
