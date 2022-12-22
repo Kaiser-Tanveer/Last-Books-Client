@@ -3,6 +3,7 @@ import Advertise from '../Advertise/Advertise';
 import Categories from './Categories/Categories';
 import Slider from './Slider/Slider';
 import WhyUsedBooks from './WhyUsedBooks/WhyUsedBooks';
+import CustomersReview from './Slider/CustomersReview/CustomersReview';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <Categories />
             <WhyUsedBooks />
             <Advertise />
+            <CustomersReview />
         </div>
     );
 };

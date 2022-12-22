@@ -8,7 +8,7 @@ import useToken from '../../MyHooks/useToken/useToken';
 
 const SignIn = () => {
     const [formError, setFormError] = useState('');
-    const { signIn } = useContext(AuthContext);
+    const { user, signIn, reset } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm('');
     const navigate = useNavigate();
     const location = useLocation();
@@ -36,6 +36,9 @@ const SignIn = () => {
             })
     }
 
+
+
+    // Password Reset 
     return (
         <div className="hero min-h-screen py-24 mx-auto lg:w-full">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
@@ -66,6 +69,10 @@ const SignIn = () => {
                                 })} placeholder="Your Password" className="input input-bordered w-full" />
                                 {errors.password && <p className='text-error'>{errors.password.message}</p>}
                             </div>
+                            <label>forgotten password? <span onClick={reset(user?.email)
+                                .then(() => { })
+                                .then(err => console.error(err))
+                            } className="link-hover link-error">reset it</span></label>
                             <input type="submit" value='Login' className='w-full btn mt-8 font-bold' />
                             <p className='text-error'>{formError}</p>
                             <p>New to Last Book? Please, <Link className='text-blue-500 link-hover mt-3' to='/register'>Register</Link></p>

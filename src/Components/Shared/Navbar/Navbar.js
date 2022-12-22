@@ -44,9 +44,9 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <button onClick={logOutHandler} className='btn mx-auto lg:mr-0'>LogOut</button>
+                        <button onClick={logOutHandler} className='btn mx-auto btn-primary lg:mr-0'>LogOut</button>
                         :
-                        <Link className="btn mr-auto lg:mr-0" to='/register'>Register</Link>
+                        <Link className="btn btn-error mr-auto lg:mr-0" to='/register'>Register</Link>
                 }
                 <label htmlFor="dashboard-drawer" className='btn-ghost p-5 lg:hidden'>
                     <FaBars />
