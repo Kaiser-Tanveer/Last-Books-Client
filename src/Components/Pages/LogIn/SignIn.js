@@ -5,6 +5,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../MyHooks/useToken/useToken';
+import { HiKey, HiMail, HiOutlineKey, HiOutlineMail } from 'react-icons/hi';
 
 const SignIn = () => {
     const [formError, setFormError] = useState('');
@@ -46,6 +47,14 @@ const SignIn = () => {
                     <FaUser className='text-5xl mx-auto' />
                     <h1 className="text-5xl font-bold text-center">Login now!</h1>
                     <p className="py-6">Register Now to Explore Awesome and Special Features</p>
+                    <p><strong>Role as an Admin</strong>
+                        <div className='flex items-center my-4'>
+                            <HiOutlineMail className='mr-2' /> <span className='border rounded-md px-2 border-primary'>ad@min.com</span> <br />
+                        </div>
+                        <div className='flex items-center'>
+                            <HiOutlineKey className='mr-2' /> <span className='border rounded-md px-2 border-primary'>iamAdmin</span>
+                        </div>
+                    </p>
                 </div>
                 <div className="card w-full shadow-2xl">
                     <div className="card-body">

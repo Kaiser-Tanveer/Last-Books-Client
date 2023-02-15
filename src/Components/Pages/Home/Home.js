@@ -5,6 +5,7 @@ import Slider from './Slider/Slider';
 import WhyUsedBooks from './WhyUsedBooks/WhyUsedBooks';
 import CustomersReview from './Slider/CustomersReview/CustomersReview';
 import ReviewCards from './ReviewCards/ReviewCards';
+import FAQ from '../FAQ/FAQ';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Advertise />
             <CustomersReview />
             <ReviewCards />
+            <FAQ />
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
-import { FaBars } from 'react-icons/fa'
+import { HiOutlineLogin, HiOutlineLogout } from 'react-icons/hi';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -17,14 +17,13 @@ const Navbar = () => {
     // MenuItems variable 
     const menuItems = <>
         <li><NavLink className='rounded-md' to='/'>Home</NavLink></li>
-        {
-            user &&
-            <li><NavLink className='rounded-md' to='/dashboard'>Dashboard</NavLink></li>
-        }
+
+        <li><NavLink className='rounded-md' to='/dashboard'>Dashboard</NavLink></li>
+
         <li><NavLink className='rounded-md' to='/blog'>Blog</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar glass fixed mx-auto z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -44,13 +43,14 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <button onClick={logOutHandler} className='btn mx-auto btn-primary lg:mr-0'>LogOut</button>
+                        <div className='hover:bg-gradient-to-r from-pink-500 to-yellow-500 p-[2px] rounded-lg hover:scale-125 duration-500 ease-in-out'>
+                            <button onClick={logOutHandler} className='flex hover:bg-gray-100 items-center text-error rounded-md px-2 border-0 mx-auto lg:mr-0'><HiOutlineLogout className='font-bold text-xl mr-1' /> Logout</button>
+                        </div>
                         :
-                        <Link className="btn btn-error mr-auto lg:mr-0" to='/register'>Register</Link>
+                        <div className='hover:bg-gradient-to-r from-primary to-secondary p-[2px] rounded-lg hover:scale-125 duration-500 ease-in-out'>
+                            <Link className="flex hover:bg-gray-100 text-primary items-center px-2 border-0 mr-auto lg:mr-0 rounded-md" to='/register'><HiOutlineLogin className='font-bold text-xl mr-1' /> Register</Link>
+                        </div>
                 }
-                <label htmlFor="dashboard-drawer" className='btn-ghost p-5 lg:hidden'>
-                    <FaBars />
-                </label>
             </div>
         </div>
     );
