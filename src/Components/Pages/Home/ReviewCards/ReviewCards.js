@@ -19,7 +19,7 @@ const ReviewCards = () => {
         return <Spinner />
     }
     return (
-        <div>
+        <div className='container mx-auto'>
             <h2 className='flex items-center font-bold text-3xl pb-6'><HiOutlineChat className='mr-1' /> Reviews</h2>
             <div className='grid lg:grid-cols-2 mb-32 gap-10'>
                 {

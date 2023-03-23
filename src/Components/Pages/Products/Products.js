@@ -11,7 +11,7 @@ const Products = () => {
         return <Spinner />
     }
     return (
-        <div className='lg:w-5/6 mx-auto py-24 rounded-xl grid lg:grid-cols-2 gap-10 group'>
+        <div className='lg:w-5/6 mx-auto py-24 rounded-xl grid lg:grid-cols-2 gap-10'>
             {
                 products?.map((product, i) => <ProductMedia
                     key={i}

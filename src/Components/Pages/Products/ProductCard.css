@@ -1,0 +1,30 @@
+.card-inner {
+    position: relative;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.group:hover .card-inner {
+    transform: rotateY(180deg);
+    animation-duration: 1s;
+    animation-delay: 1s;
+
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    height: 400px;
+    width: 300px;
+    border-radius: 5px;
+    padding: 10px;
+    transform: rotateY(180deg);
+}

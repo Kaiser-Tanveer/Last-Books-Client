@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { HiOutlineLogin, HiOutlineLogout } from 'react-icons/hi';
+import logo from '../../../Assets/logo/icons8-open-book.gif';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -33,7 +34,10 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case font-bold text-2xl">LastBooks</Link>
+                <Link className="btn btn-ghost normal-case font-bold text-2xl text-sky-500">
+                    <img src={logo} alt="logoImg" className='w-10' />
+                    <span>LastBooks</span>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

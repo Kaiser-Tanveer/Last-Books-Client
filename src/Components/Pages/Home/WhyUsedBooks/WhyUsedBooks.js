@@ -5,7 +5,7 @@ const WhyUsedBooks = () => {
     return (
         <div className='py-24'>
             <h2 className='text-5xl font-bold text-center py-10'>Why 'Used Books'</h2>
-            <div className="hero min-h-screen card shadow-lg">
+            <div className="hero card shadow-lg">
                 <div className="hero-content flex-col lg:flex-row">
                     <img src={whyBg} className="max-w-sm w-full rounded-lg shadow-2xl" alt='bg' />
                     <div>

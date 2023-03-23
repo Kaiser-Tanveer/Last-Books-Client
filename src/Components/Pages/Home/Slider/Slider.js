@@ -26,8 +26,8 @@ const Slider = () => {
         },
     ]
     return (
-        <div>
-            <div className="carousel w-full py-10">
+        <div className='w-full min-h-screen'>
+            <div className="carousel  container mx-auto w-full">
                 {
                     sliderData?.map(slider => <SliderItems
                         key={slider.id}
