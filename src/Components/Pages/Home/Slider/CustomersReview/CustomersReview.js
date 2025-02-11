@@ -7,22 +7,12 @@ import { AuthContext } from '../../../../../Contexts/AuthProvider/AuthProvider';
 const CustomersReview = () => {
     const { user } = useContext(AuthContext);
 
-    const [value, setValue] = useState()
-    const [hoverValue, setHoverValue] = useState()
+    const [value, setValue] = useState(0)
 
     const starts = Array(5).fill(0);
 
     const clickHandler = num => {
         setValue(num);
-        console.log(num);
-    };
-
-    const mouseOverHandler = num => {
-        setHoverValue(num);
-    };
-
-    const mouseLeaveHandler = () => {
-        setHoverValue(undefined);
     };
 
     const submitHandler = e => {
@@ -34,17 +24,15 @@ const CustomersReview = () => {
             minute: "2-digit",
         });
 
-        const reviewData =
-        {
+        const reviewData = {
             customer: user.displayName,
             email: user.email,
             review,
             rating: value,
             date
         }
-        console.log(reviewData);
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('http://used-books-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -67,14 +55,14 @@ const CustomersReview = () => {
                                     <FaStar
                                         key={i}
                                         className={
-                                            value || hoverValue ?
-                                                "mx-1 text-3xl text-orange-500"
-                                                :
+                                            value <= (i) ?
                                                 "mx-1 text-3xl text-gray-500"
+                                                :
+                                                "mx-1 text-3xl text-orange-500"
                                         }
                                         onClick={() => clickHandler(i + 1)}
-                                        onMouseOver={() => mouseOverHandler(i + 1)}
-                                        onMouseLeave={mouseLeaveHandler}
+                                        // onMouseOver={() => mouseOverHandler(i + 1)}
+                                        // onMouseLeave={mouseLeaveHandler}
                                     />
                                 </div>
                             })
@@ -83,7 +71,11 @@ const CustomersReview = () => {
                 </div>
                 <form onSubmit={submitHandler} className="flex flex-col w-full">
                     <textarea rows="3" placeholder="Message..." name='review' className="p-4 rounded-md resize-none text-gray-800 bg-gray-50 border-2 border-primary"></textarea>
+                    { user? 
                     <button type="submit" className="py-4 my-8 font-semibold rounded-md text-gray-50 bg-primary">Leave feedback</button>
+                    :
+                    <button type="submit" className="py-4 my-8 font-semibold rounded-md text-gray-50 bg-gray-300" disabled>Leave feedback</button>
+                    }
                 </form>
             </div>
             <div className="flex items-center justify-center">
