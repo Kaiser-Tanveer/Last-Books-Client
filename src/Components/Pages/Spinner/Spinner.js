@@ -1,15 +1,18 @@
 import React from 'react';
-import { RotatingLines } from 'react-loader-spinner';
+import { MagnifyingGlass,  } from 'react-loader-spinner';
 
 const Spinner = () => {
     return (
         <div className='h-[100vh] flex mx-auto items-center justify-center'>
-            <RotatingLines
-                strokeColor="grey"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="96"
-                visible={true}
+            <MagnifyingGlass
+            visible={true}
+            height="120"
+            width="120"
+            ariaLabel="magnifying-glass-loading"
+            wrapperStyle={{}}
+            wrapperClass="magnifying-glass-wrapper"
+            glassColor="#0da5e9"
+            color="#f87272"
             />
         </div>
     );

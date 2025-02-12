@@ -65,8 +65,8 @@ const BookingModal = ({ modalData: product, setModalData }) => {
                         <input name='name' type="text" defaultValue={user?.displayName} className="input input-bordered w-full my-3" disabled />
                         <input name='email' type="email" defaultValue={user?.email} className="input input-bordered w-full my-3" disabled />
                         <div className='flex justify-between'>
-                            <p>Regular Price: ৳<del>{newPrice}</del></p>
-                            <p>Discount Price: ৳{oldPrice}</p>
+                            <p >Regular Price: ৳<span className='text-error font-bold'><del>{newPrice}</del></span></p>
+                            <p >Discount Price: ৳<span className='text-error font-bold'>{oldPrice}</span></p>
                         </div>
                         <input name='phone' type="number" placeholder="Your Phone" className="input input-bordered w-full my-3" required />
                         <textarea name='location' className="textarea textarea-bordered w-full my-3" placeholder="You Location" required></textarea>

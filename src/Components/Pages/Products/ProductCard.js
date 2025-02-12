@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProductCard.css';
-import { HiArrowCircleDown, HiLocationMarker } from 'react-icons/hi';
+import { HiLocationMarker } from 'react-icons/hi';
 
 const ProductCard = ({ product, setModalData }) => {
     const { book, title, location, name, img, newPrice, oldPrice, used, details } = product;
@@ -17,7 +17,7 @@ const ProductCard = ({ product, setModalData }) => {
 
                     <p className='flex items-center mb-4 justify-center'><HiLocationMarker /> {location}</p>
                     <div className='grid grid-cols-3 gap-3 mb-8 border-y-2 border-sky-500'>
-                        <h4>Regular Price: <del><span className='text-error text-xl'>৳{newPrice}</span></del></h4>
+                        <h4>Regular Price: <del><span className='text-error text-xl red'>৳{newPrice}</span></del></h4>
                         <h4>Used Time: <span className='text-error text-xl'>{used}</span></h4>
                         <h4>Discount Price: <span className='text-error text-xl'>৳{oldPrice}</span></h4>
                     </div>

@@ -7,9 +7,10 @@ const Products = () => {
     const navigation = useNavigation();
     const products = useLoaderData();
 
-    if (navigation.state === "loading") {
+    if (products?.length > 1 && navigation.state === "loading") {
         return <Spinner />
     }
+    
     return (
         <div className='lg:w-5/6 mx-auto py-24 rounded-xl grid lg:grid-cols-2 gap-10'>
             {
