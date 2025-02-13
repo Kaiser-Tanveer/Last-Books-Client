@@ -17,43 +17,47 @@ const CustomersReview = () => {
         setValue(num);
     };
 
-    const submitHandler = e => {
+    const submitHandler = (e) => {
         e.preventDefault();
-        setLoading(true);
-        
-        const review = reviewText.trim();
-        const currentDate = new Date();
-        const date = currentDate.toLocaleDateString("en-US", {
-            hour: "2-digit",
-            minute: "2-digit",
-        });
-
-        const reviewData = {
-            customer: user.displayName,
-            email: user.email,
-            review,
-            rating: value,
-            date
-        };
-
-        fetch('https://used-books-server.vercel.app/reviews', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(reviewData)
-        })
-        .then(res => res.json()) 
-        .then(() => {
-            setLoading(false);
-            setReviewText("");
-            setValue(0);
-        })
-        .catch(error => {
-            console.error("Error submitting review:", error);
-            setLoading(false);
-        });
+        setLoading(true); // Start loading
+    
+        setTimeout(() => {
+            const review = reviewText.trim();
+            const currentDate = new Date();
+            const date = currentDate.toLocaleDateString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+    
+            const reviewData = {
+                customer: user.displayName,
+                email: user.email,
+                review,
+                rating: value,
+                date
+            };
+    
+            fetch('https://used-books-server.vercel.app/reviews', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reviewData)
+            })
+            .then(res => res.json())
+            .then(() => {
+                setLoading(false);
+                setReviewText("");
+                setValue(0);
+            })
+            .catch(error => {
+                console.error("Error submitting review:", error);
+                setLoading(false);
+            });
+    
+        }, 1000);
     };
+    
 
     const handleMaybeLater = () => {
         setStatus(true);

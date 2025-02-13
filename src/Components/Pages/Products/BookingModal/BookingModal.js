@@ -6,10 +6,10 @@ import Spinner from '../../Spinner/Spinner';
 
 const BookingModal = ({ modalData: product, setModalData }) => {
     const navigate = useNavigate();
-    // console.log(product);
+    
     const { user } = useContext(AuthContext);
     const { book, title, newPrice, oldPrice, used } = product;
-    // console.log(title);
+    
     const navigation = useNavigation();
     const bookingHandler = e => {
         e.preventDefault();
