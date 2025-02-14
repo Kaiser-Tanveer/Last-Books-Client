@@ -1,6 +1,7 @@
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { CardNumberElement, CardExpiryElement, CardCvcElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { ThreeDots } from 'react-loader-spinner';
 
 const Checkout = ({ order }) => {
     const [cardError, setCardError] = useState('');
@@ -29,29 +30,25 @@ const Checkout = ({ order }) => {
 
     const submitHandler = async e => {
         e.preventDefault();
-        if (!stripe || !elements) {
-            return;
-        }
+        if (!stripe || !elements) return;
 
-        const card = elements.getElement(CardElement);
+        const card = elements.getElement(CardNumberElement);
+        if (card === null) return;
 
-        if (card === null) {
-            return;
-        }
-
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card
-        })
+        });
+
         if (error) {
-            console.log(error);
             setCardError(error.message);
-        }
-        else {
+        } else {
             setCardError('');
-        };
+        }
 
         setSuccess('');
+        setProcessing(true);
+
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -67,17 +64,17 @@ const Checkout = ({ order }) => {
 
         if (confirmError) {
             setCardError(confirmError.message);
+            setProcessing(false);
             return;
         }
-        if (paymentIntent.status === "succeeded") {
 
-            // Payment Object 
+        if (paymentIntent.status === "succeeded") {
             const payment = {
                 oldPrice,
                 trxId: paymentIntent.id,
                 email,
                 orderId: _id,
-            }
+            };
 
             fetch('https://used-books-server.vercel.app/payments', {
                 method: 'POST',
@@ -88,47 +85,105 @@ const Checkout = ({ order }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     if (data.insertedId) {
-                        toast.success('Congratulations!!!!');
-                        setSuccess('Congratulations! Your payment completed successfully!');
+                        toast.success('Payment successful!');
+                        setSuccess('Your payment completed successfully!');
                         setTrxId(paymentIntent.id);
                     }
-                })
-        }
-        setProcessing(true);
+                });
 
+            setProcessing(false);
+        }
     };
+
     return (
         <div>
             <form className='mt-10' onSubmit={submitHandler}>
-                <CardElement
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: '16px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
+                {/* Card Number (Full Width) */}
+                <div className="border border-gray-300 p-2 rounded w-full flex items-center">
+                    <CardNumberElement
+                        options={{
+                            placeholder: "Card Number",
+                            style: {
+                                base: {
+                                    fontSize: '16px',
+                                    color: '#424770',
+                                    '::placeholder': { color: '#aab7c4' },
                                 },
+                                invalid: { color: '#9e2146' },
                             },
-                            invalid: {
-                                color: '#9e2146',
-                            },
-                        },
-                    }}
-                />
-                <button className='btn btn-primary btn-sm mt-5' type="submit" disabled={!stripe || !clientSecret || processing}>
-                    Pay
+                        }}
+                        className="w-full"
+                    />
+                </div>
+
+                {/* Second Row: Expiry Date, CVC, ZIP Code */}
+                <div className="flex gap-2 mt-3">
+                    {/* Expiry Date */}
+                    <div className="border border-gray-300 p-2 rounded w-1/3 flex items-center">
+                        <CardExpiryElement
+                            options={{
+                                placeholder: "MM/YY",
+                                style: {
+                                    base: {
+                                        fontSize: '16px',
+                                        color: '#424770',
+                                        '::placeholder': { color: '#aab7c4' },
+                                    },
+                                    invalid: { color: '#9e2146' },
+                                },
+                            }}
+                            className="w-full"
+                        />
+                    </div>
+
+                    {/* CVC Code */}
+                    <div className="border border-gray-300 p-2 rounded w-1/3 flex items-center">
+                        <CardCvcElement
+                            options={{
+                                placeholder: "CVC",
+                                style: {
+                                    base: {
+                                        fontSize: '16px',
+                                        color: '#424770',
+                                        '::placeholder': { color: '#aab7c4' },
+                                    },
+                                    invalid: { color: '#9e2146' },
+                                },
+                            }}
+                            className="w-full"
+                        />
+                    </div>
+
+                    {/* ZIP Code (Input Field) */}
+                    <div className="border border-gray-300 p-2 rounded w-1/3 flex items-center">
+                        <input
+                            type="text"
+                            placeholder="ZIP"
+                            className="w-full outline-none bg-transparent"
+                        />
+                    </div>
+                </div>
+
+                <button 
+                    className='btn btn-sm btn-error text-white mt-5 w-full bg-[#516bb8] border border-[#516bb8] shadow-lg shadow-gray-700' 
+                    type="submit" 
+                    disabled={!stripe || !clientSecret || processing}
+                >
+                    {processing ? <ThreeDots height="18" width="46" color="#ffffff" /> : "Pay"}
                 </button>
             </form>
-            <p className='text-error'>{cardError}</p>
-            {
-                success && <div>
+
+            {/* Error Message */}
+            {cardError && <p className='text-error mt-2'>{cardError}</p>}
+
+            {/* Success Message */}
+            {success && (
+                <div className="mt-4">
                     <p className='text-primary'>{success}</p>
                     <p className='font-bold'>Transaction ID: {trxId}</p>
                 </div>
-            }
+            )}
         </div>
     );
 };

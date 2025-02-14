@@ -11,9 +11,9 @@ const Products = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 1000); // Ensure loader shows for at least 1 sec
+        }, 1000);
 
-        return () => clearTimeout(timer); // Cleanup timer on unmount
+        return () => clearTimeout(timer);
     }, []);
 
     if (isLoading || (products?.length > 1 && navigation.state === "loading")) {

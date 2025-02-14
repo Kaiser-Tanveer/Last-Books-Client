@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SliderItems.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ThreeDots } from 'react-loader-spinner';
 
 const SliderItems = ({ slider }) => {
     const { image, id, prev, next } = slider;
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const handleContinue = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            navigate('/logIn'); // Navigate after 1 second
+        }, 1000);
+    };
+
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full">
             <div className='banner-img'>
@@ -11,7 +23,19 @@ const SliderItems = ({ slider }) => {
             </div>
             <div className='absolute hidden lg:block container mx-auto top-[25%] left-[10%] w-[65vw] lg:h-[50vh] rounded-lg border-4 border-gray-400 border-opacity-70'>
                 <div className='relative h-[90%] w-[97%] mx-auto mt-[2%] bg-opacity-70 bg-gray-700 rounded-lg'>
-                    <Link to="logIn" className='absolute bottom-0 right-0 text-xl font-bold bg-sky-500 lg:h-[100%] items-center flex px-6 rounded-r-lg bg-opacity-70'><span className='border-2 border-gray-200 text-gray-100 uppercase hover:scale-110 hover:text-error hover:border-error rounded-md p-2 duration-500'>continue</span></Link>
+                    <button 
+                        onClick={handleContinue} 
+                        className='absolute bottom-0 right-0 text-xl font-bold bg-sky-500 lg:h-[100%] items-center flex px-6 rounded-r-lg bg-opacity-70'
+                    >
+                            <span className='border-2 border-gray-200 text-gray-100 uppercase hover:scale-105 rounded-md p-2 duration-500'>
+                                {
+                                    loading ?
+                                    <ThreeDots height="26" width="103" color="#ffffff" />
+                                    :
+                                    "Continue"
+                                }
+                            </span>
+                    </button>
                 </div>
             </div>
             <div className="">

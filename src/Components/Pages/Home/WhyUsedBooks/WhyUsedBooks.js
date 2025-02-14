@@ -4,7 +4,7 @@ import whyBg from '../../../../Assets/backgrounds/whyUsedBooksBg.jpg';
 const WhyUsedBooks = () => {
     return (
         <div className='py-24'>
-            <h2 className='text-5xl font-bold text-center py-10'>Why 'Last Books'</h2>
+            <h2 className='text-5xl font-bold text-center py-10'>Why <span className='text-orange-500'>'Last Books'</span></h2>
             <div className="hero card shadow-lg">
                 <div className="hero-content flex-col lg:flex-row">
                     <img src={whyBg} className="max-w-sm w-full rounded-lg shadow-2xl" alt='bg' />

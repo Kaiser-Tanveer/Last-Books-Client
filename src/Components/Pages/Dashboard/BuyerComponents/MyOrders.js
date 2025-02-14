@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
+import { HiOutlineExclamation } from 'react-icons/hi';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
@@ -56,7 +57,7 @@ const MyOrders = () => {
             {
                 orders.length > 0 ?
 
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto pt-10">
                         <h2 className='text-5xl font-bold py-10'>My Orders</h2>
                         <table className="table w-full">
                             <thead>
@@ -87,7 +88,7 @@ const MyOrders = () => {
                                                 order.reported ?
                                                     <h4 className='text-error font-bold'> REPORTED</h4>
                                                     :
-                                                    <button onClick={() => reportHandler(order._id)} className='btn btn-sm btn-secondary'>REPORT</button>
+                                                    <button onClick={() => reportHandler(order._id)} className='btn btn-sm btn-circle hover:bg-orange-100 hover:border-orange-500 bg-orange-100 border-orange-100 ease-linear duration-500'> <HiOutlineExclamation className='text-xl text-orange-500 font-bold'/></button>
                                             }
                                         </td>
                                         <td>

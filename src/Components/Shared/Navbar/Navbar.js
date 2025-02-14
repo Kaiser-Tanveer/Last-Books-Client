@@ -6,7 +6,6 @@ import logo from '../../../Assets/logo/icons8-open-book.gif';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user);
 
     // logOutHandler
     const logOutHandler = () => {
@@ -17,11 +16,21 @@ const Navbar = () => {
 
     // MenuItems variable 
     const menuItems = <>
-        <li><NavLink className='rounded-md' to='/'>Home</NavLink></li>
-
-        <li><NavLink className='rounded-md' to='/dashboard'>Dashboard</NavLink></li>
-
-        <li><NavLink className='rounded-md' to='/blog'>Blog</NavLink></li>
+        <li>
+            <NavLink to='/' className={({ isActive }) => isActive ? "rounded-md text-sky-500 font-bold" : "rounded-md"}>
+                Home
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to='/dashboard' className={({ isActive }) => isActive ? "rounded-md text-sky-500 font-bold" : "rounded-md"}>
+                Dashboard
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to='/blog' className={({ isActive }) => isActive ? "rounded-md text-sky-500 font-bold" : "rounded-md"}>
+                Blog
+            </NavLink>
+        </li>
     </>
     return (
         <div className="navbar glass fixed mx-auto z-50">
@@ -34,7 +43,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case font-bold text-2xl text-sky-500">
+                <Link to="/" className="btn btn-ghost normal-case font-bold text-2xl text-sky-500">
                     <img src={logo} alt="logoImg" className='w-10' />
                     <span>LastBooks</span>
                 </Link>
@@ -47,12 +56,13 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <div className='hover:bg-gradient-to-r from-pink-500 to-yellow-500 p-[2px] rounded-lg hover:scale-125 duration-500 ease-in-out'>
-                            <button onClick={logOutHandler} className='flex hover:bg-gray-100 items-center text-error rounded-md px-2 border-0 mx-auto lg:mr-0'><HiOutlineLogout className='font-bold text-xl mr-1' /> Logout</button>
+                        <div className='group p-[2px] rounded-lg hover:scale-110 duration-500 border-2 border-orange-500 ease-in-out hover:bg-orange-500 hover:text-white hover:border-white'>
+                            <button onClick={logOutHandler} className='flex items-center text-orange-500 group-hover:text-white rounded-md px-2 border-0 mx-auto duration-500 ease-in-out lg:mr-0'><HiOutlineLogout className='font-bold text-xl mr-1' /> Logout</button>
                         </div>
                         :
-                        <div className='hover:bg-gradient-to-r from-primary to-secondary p-[2px] rounded-lg hover:scale-125 duration-500 ease-in-out'>
-                            <Link className="flex hover:bg-gray-100 text-primary items-center px-2 border-0 mr-auto lg:mr-0 rounded-md" to='/register'><HiOutlineLogin className='font-bold text-xl mr-1' /> Register</Link>
+                         
+                        <div className='group p-[2px] rounded-lg hover:scale-110 duration-500 border-2 border-sky-500 ease-in-out hover:bg-sky-500 hover:text-white hover:border-white'>
+                            <Link className="flex items-center text-sky-500 group-hover:text-white rounded-md px-2 border-0 mx-auto duration-500 ease-in-out lg:mr-0" to='/register'><HiOutlineLogin className='font-bold text-xl mr-1' /> Register</Link>
                         </div>
                 }
             </div>

@@ -5,12 +5,14 @@ import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../MyHooks/useToken/useToken';
-import { HiKey, HiMail, HiOutlineKey, HiOutlineMail } from 'react-icons/hi';
+import { HiOutlineKey, HiOutlineMail } from 'react-icons/hi';
+import { ThreeDots } from 'react-loader-spinner';
 
 const SignIn = () => {
     const [formError, setFormError] = useState('');
     const { user, signIn, reset } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -21,13 +23,13 @@ const SignIn = () => {
         navigate(from, { replace: true });
     }
 
-    // Submit Handler 
+    //------------------ Submit Handler --------------------//
     const submitHandler = data => {
+        setLoading(true);
         console.log(data);
         signIn(data.email, data.password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                setLoading(false);
                 toast.success('Logged in Successfully!!');
                 setLoggedInEmail(data.email);
             })
@@ -37,15 +39,15 @@ const SignIn = () => {
             })
     }
 
+    //--------------- Password Reset ---------------------//
 
 
-    // Password Reset 
     return (
         <div className="hero min-h-screen py-24 mx-auto lg:w-full">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
                 <div className="text-center lg:text-left">
-                    <FaUser className='text-5xl mx-auto' />
-                    <h1 className="text-5xl font-bold text-center">Login now!</h1>
+                    <FaUser className='text-5xl mx-auto text-sky-500' />
+                    <h1 className="text-5xl font-bold text-center text-sky-500">Login now!</h1>
                     <p className="py-6">Register Now to Explore Awesome and Special Features</p>
                     <p><strong>Role as an Admin</strong>
                         <div className='flex items-center my-4'>
@@ -56,18 +58,18 @@ const SignIn = () => {
                         </div>
                     </p>
                 </div>
-                <div className="card w-full shadow-2xl">
+                <div className="card w-full border-opacity-30 border border-sky-500 shadow-2xl">
                     <div className="card-body">
                         <form onSubmit={handleSubmit(submitHandler)}>
-                            <h2 className='text-4xl font-semibold text-center'>Login</h2>
+                            <h2 className='text-4xl font-semibold text-center text-sky-500'>Login</h2>
                             <div className="form-control w-full">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" {...register("email", { required: 'Email is required' })} placeholder="Your email" className="input input-bordered w-full" />
-                                {errors.email && <p className='text-error'>{errors.email.message}</p>}
+                                {errors.email && <p className='text-sky-500'>{errors.email.message}</p>}
                             </div>
-                            <div className="form-control w-full">
+                            <div className="form-control w-full mt-2">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
@@ -76,15 +78,20 @@ const SignIn = () => {
                                     pattern: { value: /(?=.*[a-z])(?=.*[A-Z])/, message: 'Password must contain Uppercase and LowerCase' },
                                     minLength: { value: 6, message: 'Password must be 6 characters or long' }
                                 })} placeholder="Your Password" className="input input-bordered w-full" />
-                                {errors.password && <p className='text-error'>{errors.password.message}</p>}
+                                {errors.password && <p className='text-sky-500'>{errors.password.message}</p>}
                             </div>
                             <label>forgotten password? <span onClick={reset(user?.email)
                                 .then(() => { })
                                 .then(err => console.error(err))
                             } className="link-hover link-error">reset it</span></label>
-                            <input type="submit" value='Login' className='w-full btn mt-8 font-bold' />
-                            <p className='text-error'>{formError}</p>
-                            <p>New to Last Book? Please, <Link className='text-blue-500 link-hover mt-3' to='/register'>Register</Link></p>
+                            <button 
+                                type="submit" 
+                                className='w-full btn mt-8 font-bold bg-sky-500 text-white border-sky-500 hover:bg-sky-500 hover:border-sky-500'
+                                disabled={loading}>
+                                {loading ? <ThreeDots height="20" width="50" color="#ffffff" /> : "Login"}
+                            </button>
+                            <p className='text-sky-500'>{formError}</p>
+                            <p>New to Last Book? <Link className='text-sky-500 link-hover mt-3' to='/register'>Register</Link></p>
                         </form>
                     </div>
                 </div>

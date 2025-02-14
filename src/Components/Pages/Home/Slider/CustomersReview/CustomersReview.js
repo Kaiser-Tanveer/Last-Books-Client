@@ -68,7 +68,7 @@ const CustomersReview = () => {
     return (
         <div className="flex flex-col max-w-xl p-8 shadow-lg mb-32 mx-auto rounded-xl lg:p-12 bg-gray-50 text-gray-800">
             <div className="flex flex-col items-center w-full">
-                <h2 className="text-3xl font-semibold text-center">Your opinion matters!</h2>
+                <h2 className="text-3xl font-semibold text-center text-orange-500">Your opinion matters!</h2>
                 <div className="flex flex-col items-center py-6 space-y-3">
                     <span className="text-center">How was your experience?</span>
                     <div className='rating'>
@@ -92,14 +92,14 @@ const CustomersReview = () => {
                         name="review" 
                         value={reviewText} 
                         onChange={(e) => setReviewText(e.target.value)}
-                        className="p-4 rounded-md resize-none text-gray-800 bg-gray-50 border-2 border-primary"
+                        className="p-4 rounded-md resize-none text-gray-800 bg-gray-50 border-2 border-sky-500"
                     >
 
                     </textarea>
                     {user ? (
                         <button
                             type="submit"
-                            className={`rounded-md text-gray-50 bg-primary flex items-center justify-center ${
+                            className={`rounded-md text-gray-50 bg-sky-500 flex items-center justify-center ${
                                 loading ? "h-12 my-8 w-full" : "py-4 my-8 font-semibold"
                             }`}
                             disabled={!reviewText.trim() || loading}
@@ -130,7 +130,7 @@ const CustomersReview = () => {
             <div className="flex items-center justify-center">
                 <button 
                     onClick={handleMaybeLater} 
-                    className='btn btn-ghost w-full rounded-md bg-gray-100'
+                    className='btn btn-ghost w-full rounded-md bg-gray-200'
                 >
                     Maybe later
                 </button>

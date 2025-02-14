@@ -5,7 +5,7 @@ import CategoryCard from './CategoryCard';
 
 const Categories = () => {
     // Loading data using useQuery
-    const { data: categories = [], status, isLoading } = useQuery({
+    const { data: categories = [], status } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
             const res = fetch('https://used-books-server.vercel.app/categories');
@@ -13,10 +13,10 @@ const Categories = () => {
             return data;
         }
     })
-    console.log(status.loading);
+    console.log(status?.loading);
     return (
         <div className='container mx-auto pt-14'>
-            <h2 className='text-5xl font-bold py-10'>Books of <span className='text-orange-600'>
+            <h2 className='text-5xl font-bold py-10'>Books of <span className='text-orange-500'>
                 <Typewriter
                     words={["Primary", "Secondary", "Intermediate"]}
                     loop={''}
