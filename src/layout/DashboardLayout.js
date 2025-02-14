@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 // import useAdmin from '../Components/MyHooks/useAdmin/useAdmin';
 // import useSeller from '../Components/MyHooks/useSeller/useSeller';
@@ -12,7 +12,7 @@ const DashboardLayout = () => {
     const menuHandler = () => {
         setOpen(!open);
     }
-    console.log(open);
+    
     // const { user } = useContext(AuthContext);
     // const [isAdmin] = useAdmin(user.email);
     // const [isSeller] = useSeller(user.email);

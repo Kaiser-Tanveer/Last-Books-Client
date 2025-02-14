@@ -44,7 +44,6 @@ const AddProducts = () => {
                         name: data.name,
                         date
                     }
-                    console.log(productsData);
 
                     fetch('https://used-books-server.vercel.app/products', {
                         method: 'POST',
@@ -55,7 +54,6 @@ const AddProducts = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            // console.log(data);
                             if (loading) {
                                 return <Spinner />
                             }

@@ -7,7 +7,6 @@ import Checkout from './Checkout';
 import payBg from '../../../../Assets/backgrounds/paymentBg.png';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-console.log("stripePromise:", stripePromise);
 const Payment = () => {
     const navigation = useNavigation();
     const order = useLoaderData();
@@ -15,9 +14,6 @@ const Payment = () => {
     if (navigation.state === 'loading') {
         return <Spinner />
     }
-
-    // #516bb8
-    // #436ebd
 
     return (
         <div className='mx-auto md:w-4/5 md:mt-24 rounded-lg md:border-2 border-gray-500 shadow-2xl shadow-gray-700 md:bg-transparent md:bg-gradient-to-r md:from-[#516bb8] md:to-[#496ebf]'>

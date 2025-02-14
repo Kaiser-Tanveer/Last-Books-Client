@@ -13,14 +13,12 @@ const AllSellers = () => {
                 }
             });
             const data = (await res).json();
-            console.log(data);
             return data;
         }
     })
 
     // Verify Handler 
     const verifyHandler = id => {
-        console.log(id);
         fetch(`https://used-books-server.vercel.app/users/sellers/verified/${id}`, {
             method: 'PUT',
             headers: {
@@ -29,7 +27,7 @@ const AllSellers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data); toast.success('Verified Successfully!');
+                toast.success('Verified Successfully!');
                 refetch();
             })
     }
@@ -47,7 +45,6 @@ const AllSellers = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        console.log(data);
                         toast.success('User Deleted Successfully!');
                         refetch();
                     }

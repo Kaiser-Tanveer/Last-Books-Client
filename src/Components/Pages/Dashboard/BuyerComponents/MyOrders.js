@@ -46,7 +46,6 @@ const MyOrders = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 toast.success('Reported Successfully!');
                 refetch();
             })
