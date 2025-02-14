@@ -10,9 +10,10 @@ import { ThreeDots } from 'react-loader-spinner';
 
 const SignIn = () => {
     const [formError, setFormError] = useState('');
-    const { user, signIn, reset } = useContext(AuthContext);
-    const { register, formState: { errors }, handleSubmit } = useForm('');
+    const { signIn, reset } = useContext(AuthContext);
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const [loading, setLoading] = useState(false);
+    const [showAdminInfo, setShowAdminInfo] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -24,41 +25,47 @@ const SignIn = () => {
     }
 
     //------------------ Submit Handler --------------------//
-    const submitHandler = data => {
+    const submitHandler = async (data) => {
         setLoading(true);
-        console.log(data);
-        signIn(data.email, data.password)
-            .then(result => {
-                setLoading(false);
-                toast.success('Logged in Successfully!!');
-                setLoggedInEmail(data.email);
-            })
-            .catch(err => {
-                console.error(err.message);
-                setFormError(err.message);
-            })
-    }
+        try {
+            await signIn(data.email, data.password);
+            toast.success('Logged in Successfully!');
+            setLoggedInEmail(data.email);
+        } catch (err) {
+            setFormError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    //--------------- Password Reset ---------------------//
-
+    //------------------ Password Reset --------------------//
+    const handlePasswordReset = async () => {
+        try {
+            await reset();
+            toast.success('Password reset email sent!');
+        } catch (err) {
+            setFormError(err.message);
+        }
+    };
 
     return (
-        <div className="hero min-h-screen py-24 mx-auto lg:w-full">
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
-                <div className="text-center lg:text-left">
+        <div className="hero min-h-screen py-10 mx-auto w-full flex justify-center items-center">
+            <div className="grid lg:grid-cols-2 gap-6 w-full max-w-4xl shadow-lg p-8 border border-sky-500 border-opacity-30 rounded-lg">
+                <div className="hidden lg:flex flex-col items-center justify-center p-4 border-r border-gray-300">
                     <FaUser className='text-5xl mx-auto text-sky-500' />
                     <h1 className="text-5xl font-bold text-center text-sky-500">Login now!</h1>
                     <p className="py-6">Register Now to Explore Awesome and Special Features</p>
-                    <p><strong>Role as an Admin</strong>
-                        <div className='flex items-center my-4'>
-                            <HiOutlineMail className='mr-2' /> <span className='border rounded-md px-2 border-primary'>ad@min.com</span> <br />
-                        </div>
-                        <div className='flex items-center'>
-                            <HiOutlineKey className='mr-2' /> <span className='border rounded-md px-2 border-primary'>iamAdmin</span>
-                        </div>
-                    </p>
+                    <div className='mx-auto'>
+                        <button onClick={() => setShowAdminInfo(!showAdminInfo)} className="text-xs text-sky-500 flex items-center justify-center">Admin Login Info ▼</button>
+                        {showAdminInfo && (
+                            <div className='text-xs p-2 border rounded-md mt-2 bg-gray-100'>
+                                <p><HiOutlineMail className='inline mr-1' /> ad@min.com</p>
+                                <p><HiOutlineKey className='inline mr-1' /> iamAdmin</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <div className="card w-full border-opacity-30 border border-sky-500 shadow-2xl">
+                <div className="card w-full border-opacity-30 border border-gray-500 shadow-inner shadow-gray-700">
                     <div className="card-body">
                         <form onSubmit={handleSubmit(submitHandler)}>
                             <h2 className='text-4xl font-semibold text-center text-sky-500'>Login</h2>
@@ -67,7 +74,7 @@ const SignIn = () => {
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" {...register("email", { required: 'Email is required' })} placeholder="Your email" className="input input-bordered w-full" />
-                                {errors.email && <p className='text-sky-500'>{errors.email.message}</p>}
+                                {errors.email && <p className='text-error'>{errors.email.message}</p>}
                             </div>
                             <div className="form-control w-full mt-2">
                                 <label className="label">
@@ -75,22 +82,19 @@ const SignIn = () => {
                                 </label>
                                 <input type="password" {...register("password", {
                                     required: 'Password is required',
-                                    pattern: { value: /(?=.*[a-z])(?=.*[A-Z])/, message: 'Password must contain Uppercase and LowerCase' },
-                                    minLength: { value: 6, message: 'Password must be 6 characters or long' }
+                                    pattern: { value: /(?=.*[a-z])(?=.*[A-Z])/, message: 'Password must contain uppercase and lowercase letters' },
+                                    minLength: { value: 6, message: 'Password must be at least 6 characters long' }
                                 })} placeholder="Your Password" className="input input-bordered w-full" />
-                                {errors.password && <p className='text-sky-500'>{errors.password.message}</p>}
+                                {errors.password && <p className='text-error'>{errors.password.message}</p>}
                             </div>
-                            <label>forgotten password? <span onClick={reset(user?.email)
-                                .then(() => { })
-                                .then(err => console.error(err))
-                            } className="link-hover link-error">reset it</span></label>
+                            <label className="mt-2">Forgot password? <span onClick={handlePasswordReset} className="link-hover link-error cursor-pointer">Reset it</span></label>
                             <button 
                                 type="submit" 
-                                className='w-full btn mt-8 font-bold bg-sky-500 text-white border-sky-500 hover:bg-sky-500 hover:border-sky-500'
+                                className='w-full btn mt-8 font-bold bg-sky-500 text-white border-sky-500 hover:bg-sky-500 hover:border-sky-500 shadow-md shadow-gray-700'
                                 disabled={loading}>
                                 {loading ? <ThreeDots height="20" width="50" color="#ffffff" /> : "Login"}
                             </button>
-                            <p className='text-sky-500'>{formError}</p>
+                            {formError && <p className='text-error'>{formError}</p>}
                             <p>New to Last Book? <Link className='text-sky-500 link-hover mt-3' to='/register'>Register</Link></p>
                         </form>
                     </div>

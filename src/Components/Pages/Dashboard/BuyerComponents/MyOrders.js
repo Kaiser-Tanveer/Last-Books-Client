@@ -57,8 +57,8 @@ const MyOrders = () => {
             {
                 orders.length > 0 ?
 
-                    <div className="overflow-x-auto pt-10">
-                        <h2 className='text-5xl font-bold py-10'>My Orders</h2>
+                    <div className="overflow-x-auto mt-24">
+                        <h2 className='text-3xl font-bold pb-4'>My Orders</h2>
                         <table className="table w-full">
                             <thead>
                                 <tr>

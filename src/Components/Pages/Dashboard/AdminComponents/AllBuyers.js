@@ -13,7 +13,6 @@ const AllBuyers = () => {
                 }
             });
             const data = (await res).json();
-            console.log(data);
             return data;
         }
     })
@@ -40,7 +39,8 @@ const AllBuyers = () => {
     }
 
     return (
-        <div>
+        <div className='mt-24'>
+        <h2 className='text-3xl font-bold pb-4'>All Buyers</h2>
             <table className="table w-full">
                 <thead>
                     <tr>

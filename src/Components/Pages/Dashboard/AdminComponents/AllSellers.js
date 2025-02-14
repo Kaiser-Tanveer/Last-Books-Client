@@ -56,7 +56,8 @@ const AllSellers = () => {
     }
 
     return (
-        <div>
+        <div className='mt-24'>
+        <h2 className='text-3xl font-bold pb-4'>All Sellers</h2>
             <table className="table w-full">
                 <thead>
                     <tr>
