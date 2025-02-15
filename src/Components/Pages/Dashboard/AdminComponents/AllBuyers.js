@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaCheck, FaTrashAlt } from 'react-icons/fa';
+import Spinner from '../../Spinner/Spinner';
 
 const AllBuyers = () => {
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch, isLoading, isFetching } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = fetch('https://used-books-server.vercel.app/users/buyers', {
@@ -16,6 +17,21 @@ const AllBuyers = () => {
             return data;
         }
     })
+
+    const [showSpinner, setShowSpinner] = useState(isLoading);
+    
+    useEffect(() => {
+        if (isLoading || isFetching) {
+          const timer = setTimeout(() => setShowSpinner(true), 1000);
+          return () => clearTimeout(timer);
+        } else {
+          setShowSpinner(false);
+        }
+      }, [isLoading, isFetching]);
+    
+      if (showSpinner) {
+        return <Spinner />;
+      }
 
     // User deleting handler 
     const userDelHandler = id => {

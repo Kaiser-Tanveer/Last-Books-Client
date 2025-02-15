@@ -1,0 +1,115 @@
+[debug] [2025-02-14T18:11:40.318Z] ----------------------------------------------------------------------
+[debug] [2025-02-14T18:11:40.322Z] Command:       /Users/KAISER TANVEER/.nvm/versions/node/v20.10.0/bin/node /Users/KAISER TANVEER/.nvm/versions/node/v20.10.0/bin/firebase deploy
+[debug] [2025-02-14T18:11:40.322Z] CLI Version:   13.30.0
+[debug] [2025-02-14T18:11:40.322Z] Platform:      darwin
+[debug] [2025-02-14T18:11:40.322Z] Node Version:  v20.10.0
+[debug] [2025-02-14T18:11:40.323Z] Time:          Sat Feb 15 2025 00:11:40 GMT+0600 (Bangladesh Standard Time)
+[debug] [2025-02-14T18:11:40.323Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-14T18:11:40.608Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-14T18:11:40.609Z] > authorizing via signed-in user (kaisertanveer0@gmail.com)
+[debug] [2025-02-14T18:11:40.609Z] [iam] checking project last-books for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-02-14T18:11:40.610Z] Checked if tokens are valid: false, expires at: 1739551445387
+[debug] [2025-02-14T18:11:40.610Z] Checked if tokens are valid: false, expires at: 1739551445387
+[debug] [2025-02-14T18:11:40.611Z] > refreshing access token with scopes: []
+[debug] [2025-02-14T18:11:40.613Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-02-14T18:11:40.613Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-02-14T18:11:41.038Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-02-14T18:11:41.038Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-02-14T18:11:41.053Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/last-books:testIamPermissions [none]
+[debug] [2025-02-14T18:11:41.053Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/last-books:testIamPermissions x-goog-quota-user=projects/last-books
+[debug] [2025-02-14T18:11:41.053Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/last-books:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-02-14T18:11:42.797Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/last-books:testIamPermissions 200
+[debug] [2025-02-14T18:11:42.798Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/last-books:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-02-14T18:11:42.798Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:42.798Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:42.799Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/last-books [none]
+[debug] [2025-02-14T18:11:43.521Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/last-books 200
+[debug] [2025-02-14T18:11:43.521Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/last-books {"projectId":"last-books","projectNumber":"404378980713","displayName":"last-books","name":"projects/last-books","resources":{"hostingSite":"last-books"},"state":"ACTIVE","etag":"1_177ad336-456c-44bf-b410-df849c88d837"}
+[info] 
+[info] === Deploying to 'last-books'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-02-14T18:11:43.527Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:43.527Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:43.527Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/last-books/versions [none]
+[debug] [2025-02-14T18:11:43.528Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/last-books/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2025-02-14T18:11:45.398Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/last-books/versions 200
+[debug] [2025-02-14T18:11:45.398Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/last-books/versions {"name":"projects/404378980713/sites/last-books/versions/c4dcb12760862c15","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[last-books]: beginning deploy... 
+[info] i  hosting[last-books]: found 28 files in build 
+[debug] [2025-02-14T18:11:45.642Z] [hosting] uploading with 200 concurrency
+[debug] [2025-02-14T18:11:46.636Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:46.636Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:46.667Z] [hosting] hash cache [YnVpbGQ] stored for 28 files
+[debug] [2025-02-14T18:11:46.671Z] [hosting][hash queue][FINAL] {"max":841,"min":68,"avg":134.42857142857142,"active":0,"complete":28,"success":28,"errored":0,"retried":0,"total":28,"elapsed":896}
+[debug] [2025-02-14T18:11:46.672Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/404378980713/sites/last-books/versions/c4dcb12760862c15:populateFiles [none]
+[debug] [2025-02-14T18:11:46.676Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/404378980713/sites/last-books/versions/c4dcb12760862c15:populateFiles {"files":{"/robots.txt":"391d14b3c2f8c9143a27a28c7399585142228d4d1bdbe2c87ac946de411fa9a2","/manifest.json":"4e1d3adad9ce7e17c0d13fac197f1c27091906f4ecf3909c9f51247bff345118","/logo512.png":"2356e0b814e58a349935c8de17226873d615d088a867d591fef48a64c80c9a2f","/logo192.png":"f66564670b5bfe49f3f04a5b63107bae60f4a7736f1d3b83aa0115f7acf45150","/index.html":"45b9c98efecc96e27414f12f5460d5b32aeca977f47a82c93e2022c5221aacd3","/favicon.ico":"47faae8e7ab27790109fe4611217695411c56877031cb48adb66690b06f3cb8f","/booksCategories.json":"93d6436720e382cc3d3fd1b8cfd9b2aa81a2804fe0144a800e2fdb9eb43b5a9e","/asset-manifest.json":"466b92a8846a17b54de748f51596dc4ac0ad330400ef209e51b4e3eb2f25e226","/Products.json":"65c259a6f7be1626ab0205ad10d9d3f7fa248dc5d8500f95a0f84279e38fb2be","/Categories.json":"3f6e4a07e56c8c6609607e1a545e0dabe3da0e30805bb3b9179b124f83dc3bbc","/static/media/prototypeInheritence.75eac2f0d89f04daedeb.png":"6b62227fbe75e07d47630133c0d54cf351788c5c9ad32d2fbf163dab27707a76","/static/js/main.32df3eae.js.LICENSE.txt":"10fee46e6791ec6fb92944978ab5d276d325818e9efbf61e4316ba322965e148","/static/js/453.92221df8.chunk.js.map":"22862a38242a6fb6f1546e7929b4f70db9a308449e36d4ccd4d0c0dcb9c2411d","/static/js/453.92221df8.chunk.js":"49c7dd973489afe15be6473c000472973ce86e905bee489ff149d50be006d7cf","/static/css/main.c0a33570.css.map":"52917f8d88e8b07c9c051738bf54578cb527b7f5898ffb51b88c72fac9aadde6","/static/media/unitTest.8b40d560bb9304f1cc3d.png":"da60870b1a9163e5e3ba195d408f245be620d1ddddaed42c0fd454a931f6a95d","/static/media/icons8-open-book.0b641cebdf113a27e596.gif":"593def914f06f1a5a8222046da1d009eab4d69b323a15fbc81050913f42ada31","/static/css/main.c0a33570.css":"efd72854949523526b7481c21366787fd9f50d73efd3fc7a8500023cd49cf66a","/static/media/ReactStateManagement.2adb69ba6b2c00017782.jpg":"11c30d80f4abfd0d19a072ecfae1b837733231973cbb599bcd7db42fd2a92b3a","/static/media/angular-vs-react-vs-vue.41c8c5b2c99d61ba2ab5.png":"efeecbc421e4ef5890b7475e1bfffec3de932ac5f551b0dc8a58c0e77cab92c2","/static/media/NotFoundBg.181587a6fc90f6d781ef.jpg":"15d0ddb6f40dfd567a8e2158ab755bfd64f4f565888a887bb0810391fdd73075","/static/media/paymentBg.cfbaa60c8b25d669c6d8.png":"902f7bd796cf11689df49f34a2de5236380c5eefcfccb97290ff6204b55d1832","/static/js/main.32df3eae.js":"7ce5c3a06ea00096f9ec75b99c5bef3a0d6a74670447cee55562bb61a4606dc0","/static/media/bg2.a13ed8ebe5a8c70fa7e2.png":"a49a55637a19e8ee78b841d0c6b2046f1d8bd7dd63c3cb555f56800f2754730c","/static/media/bg3.2edf6aed8aae6f9b0e02.png":"a6bf8b4b38d34322042512aa055c0faede5940c30791276116ad5b75ace658d4","/static/media/bg1.59884a0d0002313981e1.png":"1dd8f35627d25b637ab10fc3ed5e52e1aa09ed936037b974b7ad1f6ea11dba01","/static/media/whyUsedBooksBg.2f57aebc674e9f89a5b5.jpg":"8254b37bb95c62c9ee899daaf1547bc28f09cf50bf28181bbcf3ad52fc3aa3b1","/static/js/main.32df3eae.js.map":"6a37e530c9a2291f167954bfdef6884434450087395c91d81c4982e9c0185ba0"}}
+[debug] [2025-02-14T18:11:47.305Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/404378980713/sites/last-books/versions/c4dcb12760862c15:populateFiles 200
+[debug] [2025-02-14T18:11:47.305Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/404378980713/sites/last-books/versions/c4dcb12760862c15:populateFiles {"uploadRequiredHashes":["45b9c98efecc96e27414f12f5460d5b32aeca977f47a82c93e2022c5221aacd3","52917f8d88e8b07c9c051738bf54578cb527b7f5898ffb51b88c72fac9aadde6","466b92a8846a17b54de748f51596dc4ac0ad330400ef209e51b4e3eb2f25e226","7ce5c3a06ea00096f9ec75b99c5bef3a0d6a74670447cee55562bb61a4606dc0","6a37e530c9a2291f167954bfdef6884434450087395c91d81c4982e9c0185ba0","efd72854949523526b7481c21366787fd9f50d73efd3fc7a8500023cd49cf66a"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files"}
+[debug] [2025-02-14T18:11:47.305Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.306Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.306Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.306Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.306Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.306Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.306Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.306Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.307Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.307Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.307Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.307Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:47.307Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/45b9c98efecc96e27414f12f5460d5b32aeca977f47a82c93e2022c5221aacd3 [none]
+[debug] [2025-02-14T18:11:47.307Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/45b9c98efecc96e27414f12f5460d5b32aeca977f47a82c93e2022c5221aacd3 [stream]
+[debug] [2025-02-14T18:11:47.309Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/52917f8d88e8b07c9c051738bf54578cb527b7f5898ffb51b88c72fac9aadde6 [none]
+[debug] [2025-02-14T18:11:47.309Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/52917f8d88e8b07c9c051738bf54578cb527b7f5898ffb51b88c72fac9aadde6 [stream]
+[debug] [2025-02-14T18:11:47.311Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/466b92a8846a17b54de748f51596dc4ac0ad330400ef209e51b4e3eb2f25e226 [none]
+[debug] [2025-02-14T18:11:47.311Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/466b92a8846a17b54de748f51596dc4ac0ad330400ef209e51b4e3eb2f25e226 [stream]
+[debug] [2025-02-14T18:11:47.313Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/7ce5c3a06ea00096f9ec75b99c5bef3a0d6a74670447cee55562bb61a4606dc0 [none]
+[debug] [2025-02-14T18:11:47.313Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/7ce5c3a06ea00096f9ec75b99c5bef3a0d6a74670447cee55562bb61a4606dc0 [stream]
+[debug] [2025-02-14T18:11:47.314Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/6a37e530c9a2291f167954bfdef6884434450087395c91d81c4982e9c0185ba0 [none]
+[debug] [2025-02-14T18:11:47.315Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/6a37e530c9a2291f167954bfdef6884434450087395c91d81c4982e9c0185ba0 [stream]
+[debug] [2025-02-14T18:11:47.316Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/efd72854949523526b7481c21366787fd9f50d73efd3fc7a8500023cd49cf66a [none]
+[debug] [2025-02-14T18:11:47.316Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/efd72854949523526b7481c21366787fd9f50d73efd3fc7a8500023cd49cf66a [stream]
+[debug] [2025-02-14T18:11:47.317Z] [hosting][populate queue][FINAL] {"max":686,"min":686,"avg":686,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":696}
+[debug] [2025-02-14T18:11:47.318Z] [hosting] uploads queued: 6
+[debug] [2025-02-14T18:11:48.898Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/efd72854949523526b7481c21366787fd9f50d73efd3fc7a8500023cd49cf66a 200
+[debug] [2025-02-14T18:11:48.899Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/efd72854949523526b7481c21366787fd9f50d73efd3fc7a8500023cd49cf66a [stream]
+[debug] [2025-02-14T18:11:49.166Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/52917f8d88e8b07c9c051738bf54578cb527b7f5898ffb51b88c72fac9aadde6 200
+[debug] [2025-02-14T18:11:49.166Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/52917f8d88e8b07c9c051738bf54578cb527b7f5898ffb51b88c72fac9aadde6 [stream]
+[debug] [2025-02-14T18:11:49.256Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/466b92a8846a17b54de748f51596dc4ac0ad330400ef209e51b4e3eb2f25e226 200
+[debug] [2025-02-14T18:11:49.256Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/466b92a8846a17b54de748f51596dc4ac0ad330400ef209e51b4e3eb2f25e226 [stream]
+[debug] [2025-02-14T18:11:49.320Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/45b9c98efecc96e27414f12f5460d5b32aeca977f47a82c93e2022c5221aacd3 200
+[debug] [2025-02-14T18:11:49.320Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/45b9c98efecc96e27414f12f5460d5b32aeca977f47a82c93e2022c5221aacd3 [stream]
+[debug] [2025-02-14T18:11:49.509Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/6a37e530c9a2291f167954bfdef6884434450087395c91d81c4982e9c0185ba0 200
+[debug] [2025-02-14T18:11:49.509Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/6a37e530c9a2291f167954bfdef6884434450087395c91d81c4982e9c0185ba0 [stream]
+[debug] [2025-02-14T18:11:49.575Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/7ce5c3a06ea00096f9ec75b99c5bef3a0d6a74670447cee55562bb61a4606dc0 200
+[debug] [2025-02-14T18:11:49.575Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/last-books/versions/c4dcb12760862c15/files/7ce5c3a06ea00096f9ec75b99c5bef3a0d6a74670447cee55562bb61a4606dc0 [stream]
+[debug] [2025-02-14T18:11:49.576Z] [hosting][upload queue][FINAL] {"max":2269,"min":1592,"avg":1981.6666666666667,"active":0,"complete":6,"success":6,"errored":0,"retried":0,"total":6,"elapsed":2271}
+[info] ✔  hosting[last-books]: file upload complete 
+[debug] [2025-02-14T18:11:49.592Z] [hosting] deploy completed after 4191ms
+[debug] [2025-02-14T18:11:49.592Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "last-books"
+    },
+    "version": "projects/404378980713/sites/last-books/versions/c4dcb12760862c15"
+  }
+]
+[info] i  hosting[last-books]: finalizing version... 
+[debug] [2025-02-14T18:11:49.597Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:49.597Z] Checked if tokens are valid: true, expires at: 1739560300038
+[debug] [2025-02-14T18:11:49.599Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/last-books/versions/c4dcb12760862c15 updateMask=status%2Cconfig
+[debug] [2025-02-14T18:11:49.599Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/last-books/versions/c4dcb12760862c15 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}

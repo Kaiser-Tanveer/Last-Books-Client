@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-// import useAdmin from '../Components/MyHooks/useAdmin/useAdmin';
+import useAdmin from '../Components/MyHooks/useAdmin/useAdmin';
 // import useSeller from '../Components/MyHooks/useSeller/useSeller';
 import Footer from '../Components/Shared/Footer/Footer';
 import Navbar from '../Components/Shared/Navbar/Navbar';
 // import { AuthContext } from '../Contexts/AuthProvider/AuthProvider';
 import { FaUniversalAccess } from 'react-icons/fa';
+import { AuthContext } from '../Contexts/AuthProvider/AuthProvider';
 
 const DashboardLayout = () => {
     const [open, setOpen] = useState(false);
@@ -13,8 +14,9 @@ const DashboardLayout = () => {
         setOpen(!open);
     }
     
-    // const { user } = useContext(AuthContext);
-    // const [isAdmin] = useAdmin(user.email);
+    const { user } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
+    console.log(user);
     // const [isSeller] = useSeller(user.email);
     return (
         <div>
