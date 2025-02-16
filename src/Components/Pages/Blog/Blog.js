@@ -12,7 +12,7 @@ const Blog = () => {
             <div className="hero min-h-screen mb-10">
                 <div className="hero-content flex-col lg:w-4/5 card shadow-xl">
                     <img src={q1Bg} className="w-full max-h-96 rounded-lg shadow-2xl" alt='reactImage' />
-                    <div>
+                    <div className='text-justify'>
                         <h1 className="text-4xl font-bold">What are the different ways to manage a state in a React application?</h1>
                         <h1 className="text-2xl font-bold pt-6">There are four ways to manage state in React Application: </h1>
                         <p className="pb-6"><strong>Local (UI) state:</strong> Local state is data we manage in one or another component.
@@ -38,7 +38,7 @@ const Blog = () => {
             <div className="hero min-h-screen mb-10">
                 <div className="hero-content flex-col lg:w-4/5 card shadow-xl">
                     <img src={q2Bg} className="w-full max-h-96 rounded-lg shadow-2xl" alt='prototypeBg' />
-                    <div>
+                    <div className='text-justify'>
                         <h1 className="text-4xl font-bold">How does prototypical inheritance work?</h1>
                         <p className="py-6">Everything in Javascript is an object. Even when creating a Class is an Object via an Object Literal or Constructor Function. This is how Javascript does class-based programming as to other traditional Object-Oriented Programming languages where they use the keyword ‘class’ and ‘inheritance’.
                             Javascript’s version of class-based programming and other traditional class-based programming languages work with the same concept but does not work exactly similar. There are differences in its keyword, syntax, and how it worksSo, the core idea of Prototypal Inheritance is that an object can point to another object and inherit all its properties. The main purpose is to allow multiple instances of an object to share common properties, hence, the Singleton Pattern.</p>
@@ -50,7 +50,7 @@ const Blog = () => {
             <div className="hero min-h-screen mb-10">
                 <div className="hero-content flex-col lg:w-4/5 card shadow-xl">
                     <img src={q3Bg} className="w-full max-h-96 rounded-lg shadow-2xl" alt='' />
-                    <div>
+                    <div className='text-justify'>
                         <h1 className="text-4xl font-bold">What is a unit test? Why should we write unit tests?</h1>
                         <p className="py-6">Unit Testing is a testing method that tests an individual unit of software in isolation. Unit testing for React Apps means testing an individual React Component. <br />
                             Well-written unit tests act as documentation for your code. Any developer can quickly look at your tests and know the purpose of your functions.
@@ -67,7 +67,7 @@ const Blog = () => {
             <div className="hero min-h-screen mb-10">
                 <div className="hero-content flex-col lg:w-4/5 card shadow-xl">
                     <img src={q4Bg} className="w-full max-h-96 rounded-lg shadow-2xl" alt='' />
-                    <div>
+                    <div className='text-justify'>
                         <h1 className="text-4xl font-bold">React vs. Angular vs. Vue?</h1>
                         <p className="py-6">There are three frameworks for building web applications that every frontend developer has heard about: React, Vue.js, and Angular.
                             <strong>React is a UI library, Angular is a fully-fledged front-end framework, while Vue.js is a progressive framework.</strong>
