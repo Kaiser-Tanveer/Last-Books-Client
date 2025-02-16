@@ -6,54 +6,46 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider/AuthProvider';
 import { HiOutlineExclamation } from 'react-icons/hi';
 import Spinner from '../../Spinner/Spinner';
+import useAdmin from '../../../MyHooks/useAdmin/useAdmin';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const [isAdmin, adminLoading] = useAdmin(user?.email)
     
     // Fetching orders from backend
     const { data: orders = [], refetch, isLoading, isFetching } = useQuery({
-        queryKey: ['orders', user?.email],
+        queryKey: ['orders', user?.email, isAdmin],
         queryFn: async () => {
-            const res = await fetch(`https://used-books-server.vercel.app/bookings?email=${user?.email}`, {
+            const endpoint = isAdmin 
+                ? 'https://used-books-server.vercel.app/admin/bookings' 
+                : `https://used-books-server.vercel.app/bookings?email=${user?.email}`;
+            const res = await fetch(endpoint, {
                 headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` }
             });
             return res.json();
-        }
+        },
+        enabled: !!user?.email
     });
+
     const [showSpinner, setShowSpinner] = useState(isLoading);
     
+    // Loader Spinner 
     useEffect(() => {
-        if (isLoading || isFetching) {
-          const timer = setTimeout(() => setShowSpinner(true), 1000);
-          return () => clearTimeout(timer);
+        if (isLoading || isFetching || adminLoading) {
+            const timer = setTimeout(() => setShowSpinner(true), 1000);
+            return () => clearTimeout(timer);
         } else {
-          setShowSpinner(false);
+            setShowSpinner(false);
         }
-      }, [isLoading, isFetching]);
-    
-      if (showSpinner) {
+    }, [isLoading, isFetching, adminLoading]);
+
+    if (showSpinner) {
         return <Spinner />;
-      }
+    }
 
-    // Handle Delete Order
-    const deleteHandler = async (id) => {
-        if (window.confirm('Are you sure you want to delete this booking?')) {
-            try {
-                const res = await fetch(`https://used-books-server.vercel.app/bookings/reported/${id}`, {
-                    method: 'DELETE',
-                    headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` }
-                });
-                if (res.ok) {
-                    toast.success('Deleted Successfully!');
-                    refetch();
-                }
-            } catch (error) {
-                toast.error('Error deleting booking.');
-            }
-        }
-    };
-
+    
     // Handle Report Order
     const reportHandler = async (id) => {
         try {
@@ -69,18 +61,40 @@ const MyOrders = () => {
             toast.error('Error reporting booking.');
         }
     };
+    
+    const deleteHandler = async (id) => {
+        if (!isAdmin) {
+            toast.error("Only admins can delete orders.");
+            return;
+        }
+
+        if (window.confirm('Are you sure you want to delete this booking?')) {
+            try {
+                const res = await fetch(`https://used-books-server.vercel.app/bookings/reported/${id}`, {
+                    method: 'DELETE',
+                    headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` }
+                });
+
+                if (res.ok) {
+                    toast.success('Deleted Successfully!');
+                    refetch();
+                }
+            } catch (error) {
+                toast.error('Error deleting booking.');
+            }
+        }
+    };
 
     // Handle Payment Redirection
     const handlePaymentRedirect = (orderId) => {
         navigate(`/dashboard/payments/${orderId}`);
     };
     
-
     return (
         <>
             {orders.length > 0 ? (
-                <div className="overflow-x-auto mt-24">
-                    <h2 className='text-3xl font-bold pb-4'>My Orders</h2>
+                <div className="overflow-x-auto mt-24 pb-8">
+                    <h2 className='text-3xl font-bold pb-4'>{isAdmin ? "All Orders" : "My Orders"}</h2>
                     <table className="table w-full">
                         <thead>
                             <tr>
@@ -89,9 +103,9 @@ const MyOrders = () => {
                                 <th>Product</th>
                                 <th>Used Time</th>
                                 <th>Price</th>
-                                <th>Remove</th>
                                 <th>Report</th>
                                 <th>Buy</th>
+                                <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,13 +116,6 @@ const MyOrders = () => {
                                     <td>{order.productName}</td>
                                     <td>{order.usedTime}</td>
                                     <td>{order.oldPrice}</td>
-                                    <td>
-                                        <button 
-                                            onClick={() => deleteHandler(order._id)} 
-                                            className='btn btn-sm btn-error btn-outline'>
-                                            <FaTrashAlt />
-                                        </button>
-                                    </td>
                                     <td>
                                         {order.reported ? (
                                             <h4 className='text-error font-bold'>REPORTED</h4>
@@ -130,6 +137,17 @@ const MyOrders = () => {
                                         ) : (
                                             order.oldPrice && order.paid && 
                                             <span className='text-success font-semibold'>PAID</span>
+                                        )}
+                                    </td>
+                                    <td>
+                                        {isAdmin ? (
+                                            <button 
+                                                onClick={() => deleteHandler(order._id)} 
+                                                className='btn btn-sm btn-error btn-outline'>
+                                                <FaTrashAlt />
+                                            </button>
+                                        ) : (
+                                            <span className="text-gray-400">N/A</span>
                                         )}
                                     </td>
                                 </tr>
